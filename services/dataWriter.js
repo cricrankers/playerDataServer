@@ -34,6 +34,7 @@ async function generateYearObject(yearId, startYear, endYear, data) {
     
     for (let i = startYear; i <= endYear; i++) {
         yearArr[j] = {
+            year: `${i}`,
             matches: data[`${yearId}_${i}_matches`],
             innings: data[`${yearId}_${i}_innings`],
             runs: data[`${yearId}_${i}_runs`],
@@ -42,7 +43,6 @@ async function generateYearObject(yearId, startYear, endYear, data) {
             fifties: data[`${yearId}_${i}_fifties`],
             hundreds: data[`${yearId}_${i}_hundreds`],
         };
-        console.log(yearArr[j])
         j++;
     }
     return yearArr;
@@ -50,6 +50,8 @@ async function generateYearObject(yearId, startYear, endYear, data) {
 
 
 async function writeDataDb(data) {
+
+    
  
     const playerId = data.bioData_pid;
 
@@ -334,11 +336,14 @@ async function writeDataDb(data) {
         hundreds: data.allFormatVenueStatsZim_hundreds,
     };
     
+   
+
     const allFormatYearSpan = {
-        debutYear: data.allFormatYearStats_debutYear,
-        lastYear: data.allFormatYearStats_lastYear,
+        debutYear: data.allFormatYearStats_debut_year,
+        lastYear: data.allFormatYearStats_last_year,
     };
      
+
     const yearStatsArr = await generateYearObject('allFormatYearStats',allFormatYearSpan.debutYear,allFormatYearSpan.lastYear,data);
     
     const playerData = {
