@@ -28,10 +28,21 @@ function renderTable(table) {
             headerCell.textContent = header.textContent.trim();
             row.appendChild(headerCell);
 
-            rows.forEach((dataRow) => {
+            rows.forEach((dataRow, rowIndex) => {
                 const dataCell = document.createElement('td');
                 const data = dataRow.querySelectorAll('td')[index]?.textContent.trim() || '-';
                 dataCell.textContent = data;
+
+                // Apply light blue shading to the specific row
+                if (rowIndex === 0) { // Assuming the first row contains the career statistics
+                    const targetHeaders = ['Mat', 'Inns', 'Runs', 'Ave', 'SR', '50', '100'];
+                    const targetHeaderText = header.textContent.trim();
+
+                    if (targetHeaders.includes(targetHeaderText)) {
+                        dataCell.style.backgroundColor = '#E0F7FA'; // Light blue shade
+                    }
+                }
+
                 row.appendChild(dataCell);
             });
 
@@ -44,6 +55,10 @@ function renderTable(table) {
         container.innerHTML = 'Career Averages table not found!';
     }
 }
+
+
+
+
 
 // ---------------------------- Event Handlers ---------------------------- //
 
@@ -146,31 +161,39 @@ function generateYear(event, yearId,type) {
         fieldSet.innerHTML = `
             <legend>Year: ${yearLabel}</legend>
             <label><input type="checkbox" class="fill-min" name="fill" onchange="fillMin()">Not Applicable</label><br>
-            <div class="iframe-section margins">
-                <input type="text" class="url-input" value="${urlValue}">
-                <button type="button" class="search-btn" onclick="scrapYear(2, '${yearId}${yearLabel}')">Search</button>
-            </div>
-            <label for="matches" class="margins">Matches: </label>
-            <input type="number" class="margins" id="matches" required min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="${yearId}_${yearLabel}_matches">
-            <br>
-            <label for="innings" class="margins">Innings: </label>
-            <input type="number" class="margins" id="innings" required min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="${yearId}_${yearLabel}_innings">
-            <br>
-            <label for="runs" class="margins">Runs: </label>
-            <input type="number" class="margins" id="runs" required min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="${yearId}_${yearLabel}_runs">
-            <br>
-            <label for="average" class="margins">Average: </label>
-            <input type="number" class="margins" id="average" min="0" required pattern="^(0|[1-9][0-9]{0,2}|[1-9][0-9]{0,2}(\.[0-9]{1,2})?|1000(\.0{1,2})?)$" name="${yearId}_${yearLabel}_average">
-            <br>
-            <label for="strikeRate" class="margins">Strike Rate: </label>
-            <input type="number" class="margins" id="strikeRate" required pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="${yearId}_${yearLabel}_strikeRate">
-            <br>
-            <label for="fifties" class="margins">50s: </label>
-            <input type="number" class="margins" id="fifties" min="0" required pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="${yearId}_${yearLabel}_fifties">
-            <br>
-            <label for="hundreds" class="margins">100s: </label>
-            <input type="number" class="margins" id="hundreds" min="0" required pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="${yearId}_${yearLabel}_hundreds">
-            <br>
+           <div class="iframe-section margins">
+               <input type="text" class="url-input" value="${urlValue}">
+               <button type="button" class="search-btn" onclick="scrapYear(2, '${yearId}${yearLabel}')">Search</button>
+           </div>
+           <label for="matches" class="margins">Matches: </label>
+           <input type="number" class="margins" id="matches" required min="0" max="1000" 
+                  name="${yearId}_${yearLabel}_matches">
+           <br>
+           <label for="innings" class="margins">Innings: </label>
+           <input type="number" class="margins" id="innings" required min="0" max="1000" 
+                  name="${yearId}_${yearLabel}_innings">
+           <br>
+           <label for="runs" class="margins">Runs: </label>
+           <input type="number" class="margins" id="runs" required min="0" max="35000" 
+                  name="${yearId}_${yearLabel}_runs">
+           <br>
+           <label for="average" class="margins">Average: </label>
+           <input type="number" class="margins" id="average" min="0" max="1000" step="0.01" required 
+                  name="${yearId}_${yearLabel}_average">
+           <br>
+           <label for="strikeRate" class="margins">Strike Rate: </label>
+           <input type="number" class="margins" id="strikeRate" min="0" max="500" step="0.01" required 
+                  name="${yearId}_${yearLabel}_strikeRate">
+           <br>
+           <label for="fifties" class="margins">50s: </label>
+           <input type="number" class="margins" id="fifties" min="0" max="500" 
+                  name="${yearId}_${yearLabel}_fifties">
+           <br>
+           <label for="hundreds" class="margins">100s: </label>
+           <input type="number" class="margins" id="hundreds" min="0" max="500" 
+                  name="${yearId}_${yearLabel}_hundreds">
+           <br>
+
         `;
 
         // Append the fieldset to the fields container
@@ -181,7 +204,7 @@ function generateYear(event, yearId,type) {
 
  // Scrapes data from a specific table row and populates relevant inputs.
 
-async function scrap(rowNo, sectionId) {
+ async function scrap(rowNo, sectionId) {
     scrapEngineTable(sectionId);
     const section = document.getElementById(sectionId);
     const url = section.querySelector('.url-input').value;
@@ -305,7 +328,6 @@ async function scrapYear(rowNo, sectionId) {
         tableContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }
-
 
 /// filter table 
 // ---------------------------- Fetch and Display Engine Table ---------------------------- //
