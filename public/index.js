@@ -102,16 +102,31 @@ function testing(){
 /**
  * Handles the generation of input fields for each year based on debut and last years.
  */
+function fillData(careerStats,yearStats){
+
+    careerStats = document.querySelector(`#${careerStats}`);
+    debutYear = careerStats.querySelector('#debut').value;
+    lastPlayed = careerStats.querySelector('#last-played').value;
+
+    yearStats = document.querySelector(`#${yearStats}`);
+
+    yearStats.querySelector('#debut_year').value = debutYear;
+    yearStats.querySelector('#last_year').value = lastPlayed;
+
+
+}
+
 function generateYear(event, yearId,type) {
     // Ensure the clicked element has the 'generate-btn' class
     if (!event.target.classList.contains('generate-btn')) return;
 
     const playerId = document.getElementById('pid').value;
     // Find the closest '.field-generator' container
-    const generator = event.target.closest('.field-generator');
+    const parent = document.querySelector(`#${yearId}`)
+    const generator = parent.querySelector('.field-generator');
     const debutYearInput = generator.querySelector('#debut_year');
     const lastYearInput = generator.querySelector('#last_year');
-    const fieldsContainer = generator.querySelector('.fields-container');
+    const fieldsContainer = generator.querySelector('.year-container');
 
     // Parse the years from the input fields
     const debutYear = parseInt(debutYearInput.value.trim(), 10);
@@ -338,6 +353,7 @@ function populateFields(columns, section, isYear) {
 
     const isSpanPresent = columns[1]?.innerText.toLowerCase().includes('-');
     if (isYear || !isSpanPresent) {
+      
         populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
         populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
         populateField('#matches', columns[1]?.innerText.trim());

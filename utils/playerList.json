@@ -10,13 +10,15 @@
     "name": "David Boon",
     "display_name": "DC Boon",
     "country": "Australia",
-    "id": "4169"
+    "id": "4169",
+    "inserted": true
   },
   "4174": {
     "name": "Allan Border",
     "display_name": "AR Border",
     "country": "Australia",
-    "id": "4174"
+    "id": "4174",
+    "inserted": true
   },
   "4188": {
     "name": "Donald Bradman",
@@ -106,7 +108,8 @@
     "name": "Justin Langer",
     "display_name": "JL Langer",
     "country": "Australia",
-    "id": "6256"
+    "id": "6256",
+    "inserted": true
   },
   "6270": {
     "name": "William Lawry",

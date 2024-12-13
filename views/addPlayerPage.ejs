@@ -150,7 +150,7 @@
     </style>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script defer src="/index.js?v=0.1"></script>
+    <script defer src="/index.js?v=0.2"></script>
 </head>
 
 <body >
@@ -161,8 +161,9 @@
         <div class="form">
 
             <form action="/add" method="post">
-                <label><input type="checkbox" onchange="testing()">Testing</label><br>
-                <button type="submit" id="submit">Submit</button>
+                <label><input type="checkbox" onchange="testing()">Testing</label>
+                <button type="submit" id="submit">Submit</button><br><br><button type="button" onclick="window.location.href='/update'">Update Existing Player</button>
+
 
                 <h1>All Format Form</h1>
                 <fieldset id="allFormatForm">
@@ -189,7 +190,10 @@
         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="allFormatCareerStats_debut"><br>
                         <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="allFormatCareerStats_last-played"><br>
-                
+                        <button type="button" onclick="fillData('allFormatCareerStats','allFormatYearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'allFormatYearStats','allFormat')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('allFormatYearStats')">Search all</button><br>
+
                             <label for="matches" class="margins">Matches: </label><input type="number" class="margins" id="matches" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="allFormatCareerStats_matches"><br>
                             <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="allFormatCareerStats_innings"><br>
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="allFormatCareerStats_runs"><br>
@@ -735,14 +739,14 @@
                     <fieldset id="allFormatYearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="allFormatYearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="allFormatYearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="allFormatYearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="allFormatYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'allFormatYearStats','allFormat')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('allFormatYearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
 
                     <!-- add function to add sections -->
@@ -768,7 +772,10 @@
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="testCareerStats_debut"><br>
                         <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="testCareerStats_last-played"><br>
-                        
+                        <button type="button" onclick="fillData('testCareerStats','testYearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'testYearStats','test')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('testYearStats')">Search all</button><br>
+
                         <label for="matches" class="margins">Matches: </label><input type="number" class="margins" id="matches" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="testCareerStats_matches"><br>
                         <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="testCareerStats_innings"><br>
                         <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="testCareerStats_runs"><br>
@@ -1324,14 +1331,14 @@
                     <fieldset id="testYearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="testYearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="testYearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="testYearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="testYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'testYearStats','test')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('testYearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
                         
                         
@@ -1358,7 +1365,10 @@
         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="odiCareerStats_debut"><br>
                         <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="odiCareerStats_last-played"><br>
-                        
+                        <button type="button" onclick="fillData('odiCareerStats','odiYearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiYearStats','odi')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiYearStats')">Search all</button><br>
+
                             <label for="matches" class="margins">Matches: </label><input type="number" class="margins" id="matches" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="odiCareerStats_matches"><br>
                             <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="odiCareerStats_innings"><br>
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="odiCareerStats_runs"><br>
@@ -1906,14 +1916,14 @@
                     <fieldset id="odiYearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="odiYearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="odiYearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="odiYearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="odiYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiYearStats','odi')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiYearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
                      
                     <!-- add function to add sections -->
@@ -1931,7 +1941,10 @@
                 
                         <label for="pname" class="margins">Debut (year): </label><input type="number" class="margins" id="pname" name="odiWcCareerStats_pname"><br>
                         <label for="pname" class="margins">Last Played (year): </label><input type="number" class="margins" id="dname" name="odiWcCareerStats_dname"><br>        
-                
+                        <button type="button" onclick="fillData('odiWcCareerStats','odiWcYearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiWcYearStats','odiWc')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiWcYearStats')">Search all</button>
+
                         <div class="iframe-section margins">
                             
                             <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;template=results;trophy=12;type=batting" name="odiWcCareerStats_">
@@ -2353,14 +2366,14 @@
                     <fieldset id="odiWcYearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="odiWcYearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="odiWcYearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="odiWcYearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="odiWcYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiWcYearStats','odiWc')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiWcYearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
                      
                     <!-- add function to add sections -->
@@ -2385,7 +2398,10 @@
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20CareerStats_debut"><br>
                         <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20CareerStats_last-played"><br>  
-                
+                        <button type="button" onclick="fillData('t20CareerStats','t20YearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20YearStats','t20')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20YearStats')">Search all</button><br>
+
                             <label for="matches" class="margins">Matches: </label><input type="number" class="margins" id="matches" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="t20CareerStats_matches"><br>
                             <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="t20CareerStats_innings"><br>
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="t20CareerStats_runs"><br>
@@ -2934,14 +2950,14 @@
                     <fieldset id="t20YearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="t20YearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="t20YearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="t20YearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="t20YearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20YearStats','t20')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20YearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
                       
                     <!-- add function to add sections -->
@@ -2966,7 +2982,10 @@
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20WcCareerStats_debut"><br>
                         <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20WcCareerStats_last-played"><br>
-                        
+                        <button type="button" onclick="fillData('t20WcCareerStats','t20WcYearStats')">Fill</button>
+                        <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20WcYearStats','t20Wc')">Generate Fields</button>
+                        <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20WcYearStats')">Search all</button><br>
+
                             <label for="matches" class="margins">Matches: </label><input type="number" class="margins" id="matches" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="t20WcCareerStats_matches"><br>
                             <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="t20WcCareerStats_innings"><br>
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="t20WcCareerStats_runs"><br>
@@ -3389,7 +3408,7 @@
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20WcYearStats','t20Wc')">Generate Fields</button>
                             <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20WcYearStats')">Search all</button>
-                            <div class="fields-container margins"></div>
+                            <div class="year-container margins"></div>
                         </div>
                          
                     <!-- add function to add sections -->
