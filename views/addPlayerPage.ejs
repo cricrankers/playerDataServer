@@ -741,6 +741,7 @@
                             <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="allFormatYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'allFormatYearStats','allFormat')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('allFormatYearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
 
@@ -1329,6 +1330,7 @@
                             <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="testYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'testYearStats','test')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('testYearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
                         
@@ -1910,6 +1912,7 @@
                             <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="odiYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiYearStats','odi')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiYearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
                      
@@ -2356,6 +2359,7 @@
                             <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="odiWcYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiWcYearStats','odiWc')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiWcYearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
                      
@@ -2936,6 +2940,7 @@
                             <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="t20YearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20YearStats','t20')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20YearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
                       
@@ -3377,12 +3382,13 @@
                     <fieldset id="t20WcYearStats" class="box"><legend>Career Years</legend>
                         <div class="field-generator">
                             <label for="debut_year">Debut Year: </label>
-                            <input type="number" id="debut_year" class="margins" min="1900" max="2100" required="" name="t20WcYearStats_debut_year">
+                            <input type="number" id="debut_year" class="margins" min="0" max="2100" required="" name="t20WcYearStats_debut_year">
                             <br>
                             <label for="last_year">Last Played Year: </label>
-                            <input type="number" id="last_year" class="margins" min="1900" max="2100" required="" name="t20WcYearStats_last_year">
+                            <input type="number" id="last_year" class="margins" min="0" max="2100" required="" name="t20WcYearStats_last_year">
                             <br>
                             <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20WcYearStats','t20Wc')">Generate Fields</button>
+                            <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20WcYearStats')">Search all</button>
                             <div class="fields-container margins"></div>
                         </div>
                          

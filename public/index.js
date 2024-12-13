@@ -200,170 +200,188 @@ function generateYear(event, yearId,type) {
         fieldsContainer.appendChild(fieldSet);
     }
 }
+// ---------------------------- Global Variables ---------------------------- //
+const urlResponseMap = new Map();
+const maxRetries = 3;  // Maximum number of retries for fetching data
 
+// ---------------------------- Event Listeners ---------------------------- //
+prefetchUrls();
 
- // Scrapes data from a specific table row and populates relevant inputs.
-
- async function scrap(rowNo, sectionId) {
-    scrapEngineTable(sectionId);
-    const section = document.getElementById(sectionId);
-    const url = section.querySelector('.url-input').value;
+// ---------------------------- Utility Functions ---------------------------- //
+async function retryFetchUrlContent(url, retries = 0) {
     const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const tableContainer = document.getElementById('table-container');
-
-    tableContainer.innerHTML = '<p>Data is loading...</p>'; // Loading message
+    if (urlResponseMap.has(url)) return urlResponseMap.get(url);
 
     try {
         const response = await fetch(proxyUrl);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
+        
         const data = await response.json();
-        const html = data.contents;
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        
-        // reference only
-        let playerUrl = doc.querySelector('.icc-home');
-        let playerUrlBox = document.getElementById('playerUrl');
-        playerUrlBox.innerText = playerUrl.getElementsByTagName('a')[0].innerText;
-        
-        const tables = doc.querySelectorAll('table.engineTable');
-
-        let careerAveragesTable = Array.from(tables).find((table) =>
-            table.querySelector('caption')?.innerText.trim() === 'Career averages'
-        );
-
-        if (careerAveragesTable) {
-            const rows = careerAveragesTable.querySelectorAll('tr');
-            const filteredRow = rows[rowNo];
-
-            if (filteredRow) {
-                const columns = filteredRow.querySelectorAll('td');
-                const populateField = (selector, value) => {
-                    try {
-                        section.querySelector(selector).value = value;
-                    } catch (error) {
-                    }
-                };
-
-                populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
-                populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
-                populateField('#matches', columns[2]?.innerText.trim());
-                populateField('#innings', columns[3]?.innerText.trim());
-                populateField('#runs', columns[5]?.innerText.trim());
-                populateField('#average', columns[7]?.innerText.trim());
-                populateField('#strikeRate', columns[9]?.innerText.trim());
-                populateField('#fifties', columns[11]?.innerText.trim());
-                populateField('#hundreds', columns[10]?.innerText.trim());
-
-                careerAveragesTable = renderTable(careerAveragesTable);
-                tableContainer.innerHTML = careerAveragesTable.outerHTML;
-            } else {
-                tableContainer.innerHTML = '<p>Filtered row not found!</p>';
-            }
-        } else {
-            tableContainer.innerHTML = '<p>Career Averages Table not found!</p>';
-        }
+        urlResponseMap.set(url, data.contents);
+        return data.contents;
     } catch (error) {
-        console.error('Error fetching or parsing HTML:', error);
-        tableContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+        if (retries < maxRetries) {
+            console.log(`Retrying... Attempt ${retries + 1} for ${url}`);
+            return retryFetchUrlContent(url, retries + 1);  // Retry fetching
+        }
+        urlResponseMap.set(url, { error: error.message });
+        throw error;  // After max retries, throw the error
     }
 }
 
+function parseHtmlContent(html) {
+    return new DOMParser().parseFromString(html, 'text/html');
+}
+
+// ---------------------------- Prefetch URLs ---------------------------- //
+async function prefetchUrls() {
+    const urlList = Array.from(document.querySelectorAll('.url-input'));
+    console.log(urlList.length);
+
+    for (const urlElement of urlList) {
+        const url = urlElement.value;
+
+        try {
+            await retryFetchUrlContent(url);
+            console.log('Data fetched successfully');
+        } catch (error) {
+            console.log(`Failed to fetch data for URL: ${url}`);
+        }
+    }
+}
+
+// ---------------------------- Add URLs From Section ---------------------------- //
+async function addUrlsFromSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const urlList = Array.from(section.querySelectorAll('.url-input'));
+
+    for (const urlElement of urlList) {
+        const url = urlElement.value;
+
+        try {
+            await retryFetchUrlContent(url);
+            console.log('Data fetched successfully');
+        } catch (error) {
+            console.log(`Failed to fetch data for URL: ${url}`);
+        }
+    }
+}
+
+// ---------------------------- Scrap Data ---------------------------- //
+async function scrap(rowNo, sectionId) {
+    const section = document.getElementById(sectionId);
+    const url = section.querySelector('.url-input').value;
+    const tableContainer = document.getElementById('table-container');
+
+    tableContainer.innerHTML = '<p>Data is loading...</p>';
+    await scrapEngineTable(sectionId);
+
+    try {
+        const html = await retryFetchUrlContent(url);
+        const doc = parseHtmlContent(html);
+
+        displayCareerAveragesTable(doc, rowNo, section, tableContainer);
+    } catch (error) {
+        tableContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+    }
+}
 
 async function scrapYear(rowNo, sectionId) {
-    scrapEngineTable(sectionId);
     const section = document.getElementById(sectionId);
     const url = section.querySelector('.url-input').value;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
     const tableContainer = document.getElementById('table-container');
 
-    tableContainer.innerHTML = '<p>Data is loading...</p>'; // Loading message
+    tableContainer.innerHTML = '<p>Data is loading...</p>';
+    await scrapEngineTable(sectionId);
 
     try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const html = await retryFetchUrlContent(url);
+        const doc = parseHtmlContent(html);
 
-        const data = await response.json();
-        const html = data.contents;
-        const doc = new DOMParser().parseFromString(html, 'text/html');
-        const tables = doc.querySelectorAll('table.engineTable');
-
-        let careerAveragesTable = Array.from(tables).find((table) =>
-            table.querySelector('caption')?.innerText.trim() === 'Career averages'
-        );
-
-        if (careerAveragesTable) {
-            const rows = careerAveragesTable.querySelectorAll('tr');
-            const filteredRow = rows[rowNo];
-
-            if (filteredRow) {
-                const columns = filteredRow.querySelectorAll('td');
-                const populateField = (selector, value) => {
-                    try {
-                        section.querySelector(selector).value = value;
-                    } catch (error) {
-                    }
-                };
-
-                populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
-                populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
-                populateField('#matches', columns[1]?.innerText.trim());
-                populateField('#innings', columns[2]?.innerText.trim());
-                populateField('#runs', columns[4]?.innerText.trim());
-                populateField('#average', columns[6]?.innerText.trim());
-                populateField('#strikeRate', columns[8]?.innerText.trim());
-                populateField('#fifties', columns[10]?.innerText.trim());
-                populateField('#hundreds', columns[9]?.innerText.trim());
-
-                careerAveragesTable = renderTable(careerAveragesTable);
-                tableContainer.innerHTML = careerAveragesTable.outerHTML;
-            } else {
-                tableContainer.innerHTML = '<p>Filtered row not found!</p>';
-            }
-        } else {
-            tableContainer.innerHTML = '<p>Career Averages Table not found!</p>';
-        }
+        displayCareerAveragesTable(doc, rowNo, section, tableContainer, true);
     } catch (error) {
-        console.error('Error fetching or parsing HTML:', error);
         tableContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }
 
-/// filter table 
-// ---------------------------- Fetch and Display Engine Table ---------------------------- //
+function displayCareerAveragesTable(doc, rowNo, section, tableContainer, isYear = false) {
+    const tables = doc.querySelectorAll('table.engineTable');
+    let careerAveragesTable = Array.from(tables).find((table) =>
+        table.querySelector('caption')?.innerText.trim() === 'Career averages'
+    );
 
-/**
- * Fetches and displays the additional engine table alongside the Career Averages table.
- */
+    if (careerAveragesTable) {
+        const rows = careerAveragesTable.querySelectorAll('tr');
+        const filteredRow = rows[rowNo];
+
+        if (filteredRow) {
+            const columns = filteredRow.querySelectorAll('td');
+            populateFields(columns, section, isYear);
+            careerAveragesTable = renderTable(careerAveragesTable);
+            tableContainer.innerHTML = careerAveragesTable.outerHTML;
+        } else {
+            tableContainer.innerHTML = '<p>Filtered row not found!</p>';
+        }
+    } else {
+        tableContainer.innerHTML = '<p>Career Averages Table not found!</p>';
+    }
+}
+
+function populateFields(columns, section, isYear) {
+    const populateField = (selector, value) => {
+        try {
+            section.querySelector(selector).value = value;
+        } catch (error) {
+            // Ignore errors when populating fields
+        }
+    };
+
+    const isSpanPresent = columns[1]?.innerText.toLowerCase().includes('-');
+    if (isYear || !isSpanPresent) {
+        populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
+        populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
+        populateField('#matches', columns[1]?.innerText.trim());
+        populateField('#innings', columns[2]?.innerText.trim());
+        populateField('#runs', columns[4]?.innerText.trim());
+        populateField('#average', columns[6]?.innerText.trim());
+        populateField('#strikeRate', columns[8]?.innerText.trim());
+        populateField('#fifties', columns[10]?.innerText.trim());
+        populateField('#hundreds', columns[9]?.innerText.trim());
+    } else {
+        populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
+        populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
+        populateField('#matches', columns[2]?.innerText.trim());
+        populateField('#innings', columns[3]?.innerText.trim());
+        populateField('#runs', columns[5]?.innerText.trim());
+        populateField('#average', columns[7]?.innerText.trim());
+        populateField('#strikeRate', columns[9]?.innerText.trim());
+        populateField('#fifties', columns[11]?.innerText.trim());
+        populateField('#hundreds', columns[10]?.innerText.trim());
+    }
+}
+
+// ---------------------------- Scrap Engine Table ---------------------------- //
 async function scrapEngineTable(sectionId) {
     const section = document.getElementById(sectionId);
     const url = section.querySelector('.url-input').value;
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
     const tableContainer = document.getElementById('table-container2');
 
-    tableContainer.innerHTML = '<p>Data is loading...</p>'; // Loading message
+    tableContainer.innerHTML = '<p>Data is loading...</p>';
 
     try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const html = await retryFetchUrlContent(url);
+        const doc = parseHtmlContent(html);
 
-        const data = await response.json();
-        const html = data.contents;
-        const doc = new DOMParser().parseFromString(html, 'text/html');
         const tables = doc.querySelectorAll('table.engineTable');
-
-        // Find the table based on specific text contents (e.g., "Records type", "View", "Ordered by")
-        const engineTable = Array.from(tables).find((table) => {
-            const rows = table.querySelectorAll('tr');
-            return Array.from(rows).some((row) => {
+        const engineTable = Array.from(tables).find((table) =>
+            Array.from(table.querySelectorAll('tr')).some((row) => {
                 const cellText = row.textContent.trim();
                 return cellText.includes('Records type') || cellText.includes('View') || cellText.includes('Ordered by');
-            });
-        });
+            })
+        );
 
         if (engineTable) {
-            const tableHtml = engineTable.outerHTML;
-            tableContainer.innerHTML = tableHtml; // Display the fetched table
+            tableContainer.innerHTML = engineTable.outerHTML;
         } else {
             tableContainer.innerHTML = '<p>Engine Table not found!</p>';
         }
@@ -372,3 +390,4 @@ async function scrapEngineTable(sectionId) {
         tableContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }
+
