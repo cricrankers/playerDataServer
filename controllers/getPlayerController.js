@@ -47,5 +47,4 @@ async function getAddPlayerPage(req, res) {
 }
 
 
-
 export {getAddPlayerPage}

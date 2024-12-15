@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const playerListFilePath = path.resolve(__dirname, '../utils/playerList.json');
 
-async function updatePlayerPage(req, res) {
+async function getPlayerPage(req, res) {
   try {
     const data = await fs.promises.readFile(playerListFilePath, 'utf8');
     const players = JSON.parse(data); 
@@ -38,10 +38,10 @@ async function updatePlayerPage(req, res) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Update Player</title>
+        <title>Get Player</title>
       </head>
       <body>
-        <h1>Update Player</h1>
+        <h1>Get Player Data</h1>
         
         <!-- Form to enter player ID manually -->
         <form id="updatePlayerForm">
@@ -67,7 +67,7 @@ async function updatePlayerPage(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerId').value.trim();
             if (playerId) {
-              window.location.href = \`/updatePlayerData?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getPlayerData?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please enter a valid Player ID');
             }
@@ -78,7 +78,7 @@ async function updatePlayerPage(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerSelect').value;
             if (playerId) {
-              window.location.href = \`/updatePlayerData?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getPlayerData?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please select a player');
             }
@@ -93,4 +93,4 @@ async function updatePlayerPage(req, res) {
   }
 }
 
-export { updatePlayerPage };
+export { getPlayerPage };

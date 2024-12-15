@@ -7,9 +7,18 @@ async function addPlayer(req, res) {
 
         res.send(`
             <h1>Player Data Successfully Inserted!</h1>
-            <br>
+          
             <form action="/add" method="get">
-                <button type="submit">Next</button>
+                <button type="submit">Insert Next</button><br>
+            </form>
+            <form action="/update" method="get">
+                <h3>Update Existing Player's Data</h3> <button type="submit">Update</button><br>
+            </form>
+            <form action="/getPlayer" method="get">
+                <h3>Get Data of Existing Player</h3><button type="submit">Search</button>
+            </form>
+            <form action="/delete" method="get">
+                <h3>Delete Player Data</h3><button type="submit">Delete Page</button>
             </form>
         `);
 

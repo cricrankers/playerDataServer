@@ -20,27 +20,32 @@
   "4188": {
     "name": "Donald Bradman",
     "display_name": "DG Bradman",
-    "country": "Australia"
+    "country": "Australia",
+    "inserted": true
   },
   "4558": {
     "name": "Gregory Chappell",
     "display_name": "GS Chappell",
-    "country": "Australia"
+    "country": "Australia",
+    "inserted": true
   },
   "4560": {
     "name": "Ian Chappell",
     "display_name": "IM Chappell",
-    "country": "Australia"
+    "country": "Australia",
+    "inserted": true
   },
   "4578": {
     "name": "Michael Clarke",
     "display_name": "MJ Clarke",
-    "country": "Australia"
+    "country": "Australia",
+    "inserted": true
   },
   "5334": {
     "name": "Aaron Finch",
     "display_name": "AJ Finch",
-    "country": "Australia"
+    "country": "Australia",
+    "inserted": true
   },
   "5390": {
     "name": "Adam Gilchrist",

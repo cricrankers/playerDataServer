@@ -2,12 +2,15 @@ import express from 'express';
 import Router from './routes/index.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { connectDB } from './db/connection.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = 7000;
 const app = express();
+
+connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, 'views'));
@@ -22,26 +25,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/proxy', async (req, res) => {
-    const { url } = req.query;
-    if (!url) {
-        return res.status(400).json({ error: 'No URL provided' });
-    }
-
-    try {
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.text(); 
-        res.json({ contents: data });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: error.message });
-    }
-});
 
 app.use("/", Router);
 

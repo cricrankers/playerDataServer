@@ -160,11 +160,24 @@
         <!--////////////////// //////////////////////////////////////////////////// -->
             
         <div class="form">
+            <fieldset>
+                <form action="/update" method="get">
+                    <button type="submit">Update Existing Player Data</button><br><br>
+                </form>
+                <form action="/getPlayer" method="get">
+                    <button type="submit">Get Data of Existing Player</button><br><br>
+                </form>
+                <form action="/delete" method="get">
+                    <button type="submit">Delete Player Data</button><br>
+                </form>
+            </fieldset>
+          <fieldset>
 
             <form action="/add" method="post">
                 <label><input type="checkbox" onchange="testing()">Testing</label>
-                <button type="submit" id="submit">Submit</button><br><br><button type="button" onclick="window.location.href='/update'">Update Existing Player</button>
-
+                <button type="submit" id="submit">Submit</button><br><br><br>
+          </fieldset>
+            
 
                 <h1>All Format Form</h1>
                 <fieldset id="allFormatForm">

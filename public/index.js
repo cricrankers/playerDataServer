@@ -220,7 +220,7 @@ const urlResponseMap = new Map();
 const maxRetries = 5;  // Maximum number of retries for fetching data
 
 // ---------------------------- Event Listeners ---------------------------- //
-prefetchUrls();
+// prefetchUrls();
 
 // ---------------------------- Utility Functions ---------------------------- //
 async function retryFetchUrlContent(url, retries = 0) {
