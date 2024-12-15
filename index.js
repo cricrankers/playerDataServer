@@ -18,8 +18,29 @@ app.use(express.urlencoded({ extended: true, limit: '50mb', parameterLimit: 1000
 app.use(express.static(path.resolve(__dirname, './public')));
 
 app.use((req, res, next) => {
-    console.log(`Payload size: ${JSON.stringify(req.body || {}).length}`);
+    // console.log(`Payload size: ${JSON.stringify(req.body || {}).length}`);
     next();
+});
+
+app.get('/proxy', async (req, res) => {
+    const { url } = req.query;
+    if (!url) {
+        return res.status(400).json({ error: 'No URL provided' });
+    }
+
+    try {
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.text(); 
+        res.json({ contents: data });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
 });
 
 app.use("/", Router);

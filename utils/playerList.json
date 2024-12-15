@@ -3,179 +3,149 @@
     "name": "Michael Bevan",
     "display_name": "MG Bevan",
     "country": "Australia",
-    "id": "4144",
     "inserted": true
   },
   "4169": {
     "name": "David Boon",
     "display_name": "DC Boon",
     "country": "Australia",
-    "id": "4169",
     "inserted": true
   },
   "4174": {
     "name": "Allan Border",
     "display_name": "AR Border",
     "country": "Australia",
-    "id": "4174",
     "inserted": true
   },
   "4188": {
     "name": "Donald Bradman",
     "display_name": "DG Bradman",
-    "country": "Australia",
-    "id": "4188"
+    "country": "Australia"
   },
   "4558": {
     "name": "Gregory Chappell",
     "display_name": "GS Chappell",
-    "country": "Australia",
-    "id": "4558"
+    "country": "Australia"
   },
   "4560": {
     "name": "Ian Chappell",
     "display_name": "IM Chappell",
-    "country": "Australia",
-    "id": "4560"
+    "country": "Australia"
   },
   "4578": {
     "name": "Michael Clarke",
     "display_name": "MJ Clarke",
-    "country": "Australia",
-    "id": "4578"
+    "country": "Australia"
   },
   "5334": {
     "name": "Aaron Finch",
     "display_name": "AJ Finch",
-    "country": "Australia",
-    "id": "5334"
+    "country": "Australia"
   },
   "5390": {
     "name": "Adam Gilchrist",
     "display_name": "AC Gilchrist",
-    "country": "Australia",
-    "id": "5390"
+    "country": "Australia"
   },
   "5560": {
     "name": "Brad Haddin",
     "display_name": "BJ Haddin",
-    "country": "Australia",
-    "id": "5560"
+    "country": "Australia"
   },
   "5603": {
     "name": "Robert Harvey",
     "display_name": "RN Harvey",
-    "country": "Australia",
-    "id": "5603"
+    "country": "Australia"
   },
   "5616": {
     "name": "Matthew Hayden",
     "display_name": "ML Hayden",
-    "country": "Australia",
-    "id": "5616"
+    "country": "Australia"
   },
   "5628": {
     "name": "Ian Healy",
     "display_name": "IA Healy",
-    "country": "Australia",
-    "id": "5628"
+    "country": "Australia"
   },
   "5724": {
     "name": "Kieran Hughes",
     "display_name": "KJ Hughes",
-    "country": "Australia",
-    "id": "5724"
+    "country": "Australia"
   },
   "5939": {
     "name": "Michael Hussey",
     "display_name": "MEK Hussey",
-    "country": "Australia",
-    "id": "5939"
+    "country": "Australia"
   },
   "6044": {
     "name": "David Jones",
     "display_name": "DM Jones",
-    "country": "Australia",
-    "id": "6044"
+    "country": "Australia"
   },
   "6128": {
     "name": "Simon Katich",
     "display_name": "SM Katich",
-    "country": "Australia",
-    "id": "6128"
+    "country": "Australia"
   },
   "6256": {
     "name": "Justin Langer",
     "display_name": "JL Langer",
-    "country": "Australia",
-    "id": "6256",
-    "inserted": true
+    "country": "Australia"
   },
   "6270": {
     "name": "William Lawry",
     "display_name": "WM Lawry",
-    "country": "Australia",
-    "id": "6270"
+    "country": "Australia"
   },
   "6499": {
     "name": "Greg Marsh",
     "display_name": "GR Marsh",
-    "country": "Australia",
-    "id": "6499"
+    "country": "Australia"
   },
   "6513": {
     "name": "Darren Martyn",
     "display_name": "DR Martyn",
-    "country": "Australia",
-    "id": "6513"
+    "country": "Australia"
   },
   "6683": {
     "name": "Shaun Marsh",
     "display_name": "SE Marsh",
-    "country": "Australia",
-    "id": "6683"
+    "country": "Australia"
   },
   "7133": {
     "name": "Ricky Ponting",
     "display_name": "RT Ponting",
-    "country": "Australia",
-    "id": "7133"
+    "country": "Australia"
   },
   "7629": {
     "name": "Mark Slater",
     "display_name": "MJ Slater",
-    "country": "Australia",
-    "id": "7629"
+    "country": "Australia"
   },
   "7702": {
     "name": "Andrew Symonds",
     "display_name": "A Symonds",
-    "country": "Australia",
-    "id": "7702"
+    "country": "Australia"
   },
   "7924": {
     "name": "Matthew Taylor",
     "display_name": "MA Taylor",
-    "country": "Australia",
-    "id": "7924"
+    "country": "Australia"
   },
   "8151": {
     "name": "Kerry Walters",
     "display_name": "KD Walters",
-    "country": "Australia",
-    "id": "8151"
+    "country": "Australia"
   },
   "8180": {
     "name": "Shane Watson",
     "display_name": "SR Watson",
-    "country": "Australia",
-    "id": "8180"
+    "country": "Australia"
   },
   "8189": {
     "name": "Mark Waugh",
     "display_name": "ME Waugh",
-    "country": "Australia",
-    "id": "8189"
+    "country": "Australia"
   },
   "8192": {
     "name": "Steve Waugh",
@@ -540,7 +510,8 @@
   "34102": {
     "name": "Rohit Sharma",
     "display_name": "RG Sharma",
-    "country": "India"
+    "country": "India",
+    "inserted": true
   },
   "34103": {
     "name": "Kris Srikkanth",
@@ -770,7 +741,8 @@
   "43906": {
     "name": "Hashim Amla",
     "display_name": "HM Amla",
-    "country": "South Africa"
+    "country": "South Africa",
+    "inserted": true
   },
   "44111": {
     "name": "Mark Boucher",
@@ -805,7 +777,8 @@
   "44936": {
     "name": "AB de Villiers",
     "display_name": "AB de Villiers",
-    "country": "South Africa"
+    "country": "South Africa",
+    "inserted": true
   },
   "45224": {
     "name": "Herschelle Gibbs",
@@ -1160,7 +1133,8 @@
   "253802": {
     "name": "Virat Kohli",
     "display_name": "V Kohli",
-    "country": "India"
+    "country": "India",
+    "inserted": true
   },
   "259410": {
     "name": "Ahmed Shehzad",

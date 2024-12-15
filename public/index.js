@@ -217,14 +217,15 @@ function generateYear(event, yearId,type) {
 }
 // ---------------------------- Global Variables ---------------------------- //
 const urlResponseMap = new Map();
-const maxRetries = 3;  // Maximum number of retries for fetching data
+const maxRetries = 5;  // Maximum number of retries for fetching data
 
 // ---------------------------- Event Listeners ---------------------------- //
 prefetchUrls();
 
 // ---------------------------- Utility Functions ---------------------------- //
 async function retryFetchUrlContent(url, retries = 0) {
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+    const baseUrl = window.location.origin;  
+    const proxyUrl = `${baseUrl}/proxy?url=${encodeURIComponent(url)}`;    
     if (urlResponseMap.has(url)) return urlResponseMap.get(url);
 
     try {
@@ -243,6 +244,7 @@ async function retryFetchUrlContent(url, retries = 0) {
         throw error;  // After max retries, throw the error
     }
 }
+
 
 function parseHtmlContent(html) {
     return new DOMParser().parseFromString(html, 'text/html');
