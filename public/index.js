@@ -76,19 +76,25 @@ document.querySelectorAll('.fill-min').forEach((checkbox) => {
     });
 });
 
-function fillMin(){
+function fillMin() {
     document.querySelectorAll('.fill-min').forEach((checkbox) => {
         checkbox.addEventListener('change', function () {
             const fieldset = this.closest('fieldset');
             const inputs = fieldset.querySelectorAll('input[type="number"]');
-    
+            const inputs2 = fieldset.querySelectorAll('[id="average"]');
+
+            // If the checkbox is checked, set all number inputs and the average field to '0' or '-'
             inputs.forEach((input) => {
-                input.value = this.checked ? '0' : '';
+                input.value = this.checked ? '0' : ''; // Set '0' for other number inputs
+            });
+
+            inputs2.forEach((input) => {
+                input.value = this.checked ? '-' : ''; // Set '-' for the average field
             });
         });
     });
-    
 }
+
 
 function testing(){
 
