@@ -3,11 +3,12 @@ import Router from './routes/index.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { connectDB } from './db/connection.js';
+import dotenv from'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = 7000;
+const PORT = process.env.PORT || 7001;
 const app = express();
 
 connectDB();
