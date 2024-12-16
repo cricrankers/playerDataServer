@@ -8,6 +8,9 @@ import dotenv from'dotenv';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+dotenv.config({ path: '../.env' });
+
+
 const PORT = process.env.PORT || 7001;
 const app = express();
 
