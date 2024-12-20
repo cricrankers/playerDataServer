@@ -14,7 +14,7 @@ dotenv.config({ path: '../.env' });
 const PORT = process.env.PORT || 7001;
 const app = express();
 
-connectDB();
+await connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, 'views'));

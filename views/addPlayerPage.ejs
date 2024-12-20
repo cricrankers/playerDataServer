@@ -162,20 +162,20 @@
         <div class="form">
             <fieldset>
                 <form action="/update" method="get">
-                    <button type="submit">Update Existing Player Data</button><br><br>
+                    <button type="submit">Update / Insert any Player's Data</button><br><br>
                 </form>
                 <form action="/getPlayer" method="get">
                     <button type="submit">Get Data of Existing Player</button><br><br>
                 </form>
                 <form action="/delete" method="get">
-                    <button type="submit">Delete Player Data</button><br>
+                    <button type="submit">Delete any Players' Data</button><br>
                 </form>
             </fieldset>
           <fieldset>
 
             <form action="/add" method="post">
                 <label><input type="checkbox" onchange="testing()">Testing</label>
-                <button type="submit" id="submit">Submit</button><br><br><br>
+                <button type="submit" id="">Submit</button><br><br><br>
           </fieldset>
             
 
@@ -185,7 +185,7 @@
                     <fieldset id="bioData" class="box">
                         <span id="playerUrl"></span><br>
                         <legend class="legend">Bio Data</legend>
-                        <label for="pid" class="margins">ID: </label><input type="text" readonly="" value="<%- player.id  %>" class="margins" id="pid" name="bioData_pid"><br>
+                        <label for="pid" class="margins">ID: </label><input type="text" readonly="" value="<%- player.player_id %>" class="margins" id="pid" name="bioData_pid"><br>
                         <label for="pname" class="margins">Name: </label><input type="text" readonly="" value="<%- player.name  %>" class="margins" id="pname" name="bioData_pname"><br>
                         <label for="dname" class="margins">DisplayName: </label><input type="text" value="<%- player.display_name%>" class="margins" id="dname" name="bioData_dname"><br>
                         <label for="country" class="margins">Country: </label><input type="text" readonly="" value="<%- player.country  %>" class="margins" id="country" name="bioData_country"><br>
@@ -196,7 +196,7 @@
                     
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;template=results;type=batting" name="allFormatCareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;template=results;type=batting" name="allFormatCareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(1,'allFormatCareerStats')">Search</button>
                             
                         </div>
@@ -224,7 +224,7 @@
                         
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;home_or_away=1;template=results;type=batting" name="allFormatHomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;home_or_away=1;template=results;type=batting" name="allFormatHomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'allFormatHomeStats')">Search</button>
                             
                         </div>
@@ -245,7 +245,7 @@
                  
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;home_or_away=2;template=results;type=batting" name="allFormatAwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;home_or_away=2;template=results;type=batting" name="allFormatAwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'allFormatAwayStats')">Search</button>
                             
                         </div>
@@ -266,7 +266,7 @@
                  
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;orderby=default;result=1;template=results;type=batting" name="allFormatWinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;orderby=default;result=1;template=results;type=batting" name="allFormatWinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'allFormatWinsStats')">Search</button>
                             
                         </div>
@@ -287,7 +287,7 @@
                  
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;orderby=default;result=2;template=results;type=batting" name="allFormatLostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;orderby=default;result=2;template=results;type=batting" name="allFormatLostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'allFormatLostStats')">Search</button>
                             
                         </div>
@@ -311,7 +311,7 @@
                  
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="allFormatOppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="allFormatOppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsAus')">Search</button>
                                 
                             </div>
@@ -330,7 +330,7 @@
                            
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="allFormatOppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="allFormatOppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsEng')">Search</button>
                                 
                             </div>
@@ -349,7 +349,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="allFormatOppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="allFormatOppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsNz')">Search</button>
                                 
                             </div>
@@ -368,7 +368,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="allFormatOppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="allFormatOppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsSa')">Search</button>
                                 
                             </div>
@@ -387,7 +387,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="allFormatOppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="allFormatOppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsInd')">Search</button>
                                 
                             </div>
@@ -406,7 +406,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="allFormatOppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="allFormatOppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsPak')">Search</button>
                                 
                             </div>
@@ -425,7 +425,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="allFormatOppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="allFormatOppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsBan')">Search</button>
                                 
                             </div>
@@ -444,7 +444,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="allFormatOppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="allFormatOppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsSl')">Search</button>
                                 
                             </div>
@@ -463,7 +463,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="allFormatOppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="allFormatOppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsWi')">Search</button>
                                 
                             </div>
@@ -482,7 +482,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="allFormatOppStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="allFormatOppStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsIre')">Search</button>
                                 
                             </div>
@@ -501,7 +501,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="allFormatOppStatsAfg_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="allFormatOppStatsAfg_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsAfg')">Search</button>
                                 
                             </div>
@@ -520,7 +520,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="allFormatOppStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="allFormatOppStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatOppStatsZim')">Search</button>
                                 
                             </div>
@@ -544,7 +544,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=2;orderby=default;template=results;type=batting" name="allFormatVenueStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=2;orderby=default;template=results;type=batting" name="allFormatVenueStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsAus')">Search</button>
                                 
                             </div>
@@ -563,7 +563,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=1;orderby=default;template=results;type=batting" name="allFormatVenueStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=1;orderby=default;template=results;type=batting" name="allFormatVenueStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsEng')">Search</button>
                                 
                             </div>
@@ -582,7 +582,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=5;orderby=default;template=results;type=batting" name="allFormatVenueStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=5;orderby=default;template=results;type=batting" name="allFormatVenueStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsNz')">Search</button>
                                 
                             </div>
@@ -601,7 +601,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=3;orderby=default;template=results;type=batting" name="allFormatVenueStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=3;orderby=default;template=results;type=batting" name="allFormatVenueStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsSa')">Search</button>
                                 
                             </div>
@@ -620,7 +620,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=6;orderby=default;template=results;type=batting" name="allFormatVenueStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=6;orderby=default;template=results;type=batting" name="allFormatVenueStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsInd')">Search</button>
                                 
                             </div>
@@ -639,7 +639,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=7;orderby=default;template=results;type=batting" name="allFormatVenueStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=7;orderby=default;template=results;type=batting" name="allFormatVenueStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsPak')">Search</button>
                                 
                             </div>
@@ -658,7 +658,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=25;orderby=default;template=results;type=batting" name="allFormatVenueStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=25;orderby=default;template=results;type=batting" name="allFormatVenueStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsBan')">Search</button>
                                 
                             </div>
@@ -677,7 +677,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=8;orderby=default;template=results;type=batting" name="allFormatVenueStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=8;orderby=default;template=results;type=batting" name="allFormatVenueStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsSl')">Search</button>
                                 
                             </div>
@@ -696,7 +696,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=4;orderby=default;template=results;type=batting" name="allFormatVenueStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=4;orderby=default;template=results;type=batting" name="allFormatVenueStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsWi')">Search</button>
                                 
                             </div>
@@ -715,7 +715,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=29;orderby=default;template=results;type=batting" name="allFormatVenueStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=29;orderby=default;template=results;type=batting" name="allFormatVenueStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsIre')">Search</button>
                                 
                             </div>
@@ -734,7 +734,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=11;filter=advanced;host=9;orderby=default;template=results;type=batting" name="allFormatVenueStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=11;filter=advanced;host=9;orderby=default;template=results;type=batting" name="allFormatVenueStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'allFormatVenueStatsZim')">Search</button>
                                 
                             </div>
@@ -779,7 +779,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;orderby=default;template=results;type=batting" name="testCareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;orderby=default;template=results;type=batting" name="testCareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(1,'testCareerStats')">Search</button>
                             
                         </div>
@@ -806,7 +806,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="testHomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="testHomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'testHomeStats')">Search</button>
                             
                         </div>
@@ -827,7 +827,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="testAwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="testAwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'testAwayStats')">Search</button>
                             
                         </div>
@@ -848,7 +848,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;orderby=default;result=1;template=results;type=batting" name="testWinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;orderby=default;result=1;template=results;type=batting" name="testWinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'testWinsStats')">Search</button>
                             
                         </div>
@@ -869,7 +869,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;orderby=default;result=2;template=results;type=batting" name="testLostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;orderby=default;result=2;template=results;type=batting" name="testLostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'testLostStats')">Search</button>
                             
                         </div>
@@ -890,7 +890,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;orderby=default;result=4;template=results;type=batting" name="testDrawStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;orderby=default;result=4;template=results;type=batting" name="testDrawStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'testDrawStats')">Search</button>
                             
                         </div>
@@ -911,7 +911,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="test1stInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="test1stInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'test1stInnStats')">Search</button>
                             
                         </div>
@@ -932,7 +932,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="test2ndInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="test2ndInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'test2ndInnStats')">Search</button>
                             
                         </div>
@@ -953,7 +953,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;innings_number=3;orderby=default;template=results;type=batting" name="test3rdInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;innings_number=3;orderby=default;template=results;type=batting" name="test3rdInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'test3rdInnStats')">Search</button>
                             
                         </div>
@@ -974,7 +974,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;innings_number=4;orderby=default;template=results;type=batting" name="test4thInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;innings_number=4;orderby=default;template=results;type=batting" name="test4thInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'test4thInnStats')">Search</button>
                             
                         </div>
@@ -996,7 +996,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="testOppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="testOppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsAus')">Search</button>
                                 
                             </div>
@@ -1015,7 +1015,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="testOppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="testOppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsEng')">Search</button>
                                 
                             </div>
@@ -1053,7 +1053,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="testOppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="testOppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsSa')">Search</button>
                                 
                             </div>
@@ -1072,7 +1072,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="testOppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="testOppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsInd')">Search</button>
                                 
                             </div>
@@ -1091,7 +1091,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="allFormatOppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="allFormatOppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsPak')">Search</button>
                                 
                             </div>
@@ -1110,7 +1110,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="testOppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="testOppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsBan')">Search</button>
                                 
                             </div>
@@ -1129,7 +1129,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="testOppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="testOppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsSl')">Search</button>
                                 
                             </div>
@@ -1148,7 +1148,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="testOppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="testOppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsWi')">Search</button>
                                 
                             </div>
@@ -1173,7 +1173,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=2;orderby=default;template=results;type=batting" name="testVenueStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=2;orderby=default;template=results;type=batting" name="testVenueStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsAus')">Search</button>
                                 
                             </div>
@@ -1192,7 +1192,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=1;orderby=default;template=results;type=batting" name="testVenueStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=1;orderby=default;template=results;type=batting" name="testVenueStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsEng')">Search</button>
                                 
                             </div>
@@ -1211,7 +1211,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=5;orderby=default;template=results;type=batting" name="testVenueStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=5;orderby=default;template=results;type=batting" name="testVenueStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsNz')">Search</button>
                                 
                             </div>
@@ -1230,7 +1230,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=3;orderby=default;template=results;type=batting" name="testVenueStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=3;orderby=default;template=results;type=batting" name="testVenueStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsSa')">Search</button>
                                 
                             </div>
@@ -1249,7 +1249,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=6;orderby=default;template=results;type=batting" name="testVenueStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=6;orderby=default;template=results;type=batting" name="testVenueStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsInd')">Search</button>
                                 
                             </div>
@@ -1268,7 +1268,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=7;orderby=default;template=results;type=batting" name="testVenueStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=7;orderby=default;template=results;type=batting" name="testVenueStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsPak')">Search</button>
                                 
                             </div>
@@ -1287,7 +1287,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=25;orderby=default;template=results;type=batting" name="testVenueStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=25;orderby=default;template=results;type=batting" name="testVenueStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsBan')">Search</button>
                                 
                             </div>
@@ -1306,7 +1306,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=8;orderby=default;template=results;type=batting" name="testVenueStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=8;orderby=default;template=results;type=batting" name="testVenueStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsSl')">Search</button>
                                 
                             </div>
@@ -1325,7 +1325,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=1;filter=advanced;host=4;orderby=default;template=results;type=batting" name="testVenueStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=1;filter=advanced;host=4;orderby=default;template=results;type=batting" name="testVenueStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testVenueStatsWi')">Search</button>
                                 
                             </div>
@@ -1372,7 +1372,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;template=results;type=batting" name="odiCareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;template=results;type=batting" name="odiCareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(1,'odiCareerStats')">Search</button>
                             
                         </div>
@@ -1399,7 +1399,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="odiHomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="odiHomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiHomeStats')">Search</button>
                             
                         </div>
@@ -1420,7 +1420,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="odiAwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="odiAwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiAwayStats')">Search</button>
                             
                         </div>
@@ -1441,7 +1441,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;result=1;template=results;type=batting" name="odiWinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;result=1;template=results;type=batting" name="odiWinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWinsStats')">Search</button>
                             
                         </div>
@@ -1462,7 +1462,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;result=2;template=results;type=batting" name="odiLostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;result=2;template=results;type=batting" name="odiLostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiLostStats')">Search</button>
                             
                         </div>
@@ -1483,7 +1483,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="odi1stInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="odi1stInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odi1stInnStats')">Search</button>
                             
                         </div>
@@ -1504,7 +1504,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="odi2ndInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="odi2ndInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odi2ndInnStats')">Search</button>
                             
                         </div>
@@ -1526,7 +1526,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="odiOppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="odiOppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsAus')">Search</button>
                                 
                             </div>
@@ -1545,7 +1545,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="odiOppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="odiOppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsEng')">Search</button>
                                 
                             </div>
@@ -1564,7 +1564,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="odiOppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="odiOppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsNz')">Search</button>
                                 
                             </div>
@@ -1583,7 +1583,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="odiOppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="odiOppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsSa')">Search</button>
                                 
                             </div>
@@ -1602,7 +1602,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="odiOppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="odiOppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsInd')">Search</button>
                                 
                             </div>
@@ -1621,7 +1621,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="odiOppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="odiOppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsPak')">Search</button>
                                 
                             </div>
@@ -1640,7 +1640,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="odiOppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="odiOppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsBan')">Search</button>
                                 
                             </div>
@@ -1659,7 +1659,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="odiOppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="odiOppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsSl')">Search</button>
                                 
                             </div>
@@ -1678,7 +1678,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="odiOppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="odiOppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsWi')">Search</button>
                                 
                             </div>
@@ -1697,7 +1697,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="odiOppStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="odiOppStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsIre')">Search</button>
                                 
                             </div>
@@ -1716,7 +1716,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="odiOppStatsAfg_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="odiOppStatsAfg_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsAfg')">Search</button>
                                 
                             </div>
@@ -1735,7 +1735,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="odiOppStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="odiOppStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiOppStatsZim')">Search</button>
                                 
                             </div>
@@ -1759,7 +1759,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=2;orderby=default;template=results;type=batting" name="odiVenueStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=2;orderby=default;template=results;type=batting" name="odiVenueStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsAus')">Search</button>
                                 
                             </div>
@@ -1778,7 +1778,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=1;orderby=default;template=results;type=batting" name="odiVenueStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=1;orderby=default;template=results;type=batting" name="odiVenueStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsEng')">Search</button>
                                 
                             </div>
@@ -1797,7 +1797,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=5;orderby=default;template=results;type=batting" name="odiVenueStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=5;orderby=default;template=results;type=batting" name="odiVenueStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsNz')">Search</button>
                                 
                             </div>
@@ -1816,7 +1816,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=3;orderby=default;template=results;type=batting" name="odiVenueStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=3;orderby=default;template=results;type=batting" name="odiVenueStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsSa')">Search</button>
                                 
                             </div>
@@ -1835,7 +1835,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=6;orderby=default;template=results;type=batting" name="odiVenueStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=6;orderby=default;template=results;type=batting" name="odiVenueStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsInd')">Search</button>
                                 
                             </div>
@@ -1854,7 +1854,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=7;orderby=default;template=results;type=batting" name="odiVenueStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=7;orderby=default;template=results;type=batting" name="odiVenueStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsPak')">Search</button>
                                 
                             </div>
@@ -1873,7 +1873,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=25;orderby=default;template=results;type=batting" name="odiVenueStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=25;orderby=default;template=results;type=batting" name="odiVenueStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsBan')">Search</button>
                                 
                             </div>
@@ -1892,7 +1892,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=8;orderby=default;template=results;type=batting" name="odiVenueStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=8;orderby=default;template=results;type=batting" name="odiVenueStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsSl')">Search</button>
                                 
                             </div>
@@ -1911,7 +1911,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;host=4;orderby=default;template=results;type=batting" name="odiVenueStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;host=4;orderby=default;template=results;type=batting" name="odiVenueStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiVenueStatsWi')">Search</button>
                                 
                             </div>
@@ -1955,7 +1955,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;template=results;trophy=12;type=batting" name="odiWcCareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;template=results;trophy=12;type=batting" name="odiWcCareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcCareerStats')">Search</button>
                             
                         </div>
@@ -1982,7 +1982,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;home_or_away=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcHomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;home_or_away=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcHomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcHomeStats')">Search</button>
                             
                         </div>
@@ -2003,7 +2003,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;home_or_away=2;home_or_away=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcAwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;home_or_away=2;home_or_away=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcAwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcAwayStats')">Search</button>
                             
                         </div>
@@ -2024,7 +2024,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;result=1;template=results;trophy=12;type=batting" name="odiWcWinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;result=1;template=results;trophy=12;type=batting" name="odiWcWinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcWinsStats')">Search</button>
                             
                         </div>
@@ -2045,7 +2045,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;orderby=default;result=2;template=results;trophy=12;type=batting" name="odiWcLostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;orderby=default;result=2;template=results;trophy=12;type=batting" name="odiWcLostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcLostStats')">Search</button>
                             
                         </div>
@@ -2066,7 +2066,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;innings_number=1;orderby=default;template=results;trophy=12;type=batting" name="odiWc1stInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;innings_number=1;orderby=default;template=results;trophy=12;type=batting" name="odiWc1stInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWc1stInnStats')">Search</button>
                             
                         </div>
@@ -2087,7 +2087,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;innings_number=2;orderby=default;template=results;trophy=12;type=batting" name="odiWc2ndInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;innings_number=2;orderby=default;template=results;trophy=12;type=batting" name="odiWc2ndInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWc2ndInnStats')">Search</button>
                             
                         </div>
@@ -2108,7 +2108,7 @@
              
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;final_type=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcSemisStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;final_type=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcSemisStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcSemisStats')">Search</button>
                             
                         </div>
@@ -2129,7 +2129,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;final_type=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcFinalsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;final_type=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcFinalsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'odiWcFinalsStats')">Search</button>
                             
                         </div>
@@ -2151,7 +2151,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=2;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=2;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsAus')">Search</button>
                                 
                             </div>
@@ -2170,7 +2170,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=1;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsEng')">Search</button>
                                 
                             </div>
@@ -2189,7 +2189,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=5;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=5;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsNz')">Search</button>
                                 
                             </div>
@@ -2208,7 +2208,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=3;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsSa')">Search</button>
                                 
                             </div>
@@ -2227,7 +2227,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=6;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=6;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsInd')">Search</button>
                                 
                             </div>
@@ -2246,7 +2246,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=7;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=7;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsPak')">Search</button>
                                 
                             </div>
@@ -2265,7 +2265,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=25;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=25;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsBan')">Search</button>
                                 
                             </div>
@@ -2284,7 +2284,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=8;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=8;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsSl')">Search</button>
                                 
                             </div>
@@ -2303,7 +2303,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=4;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=4;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsWi')">Search</button>
                                 
                             </div>
@@ -2322,7 +2322,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=29;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=29;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsIre')">Search</button>
                                 
                             </div>
@@ -2341,7 +2341,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=40;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsAfg_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=40;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsAfg_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsAfg')">Search</button>
                                 
                             </div>
@@ -2360,7 +2360,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=2;filter=advanced;opposition=9;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=2;filter=advanced;opposition=9;orderby=default;template=results;trophy=12;type=batting" name="odiWcOppStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'odiWcOppStatsZim')">Search</button>
                                 
                             </div>
@@ -2405,7 +2405,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;template=results;type=batting" name="t20CareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;template=results;type=batting" name="t20CareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(1,'t20CareerStats')">Search</button>
                             
                         </div>
@@ -2432,7 +2432,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="t20HomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;home_or_away=1;orderby=default;template=results;type=batting" name="t20HomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20HomeStats')">Search</button>
                             
                         </div>
@@ -2453,7 +2453,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="t20AwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;home_or_away=2;orderby=default;template=results;type=batting" name="t20AwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20AwayStats')">Search</button>
                             
                         </div>
@@ -2474,7 +2474,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;result=1;template=results;type=batting" name="t20WinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;result=1;template=results;type=batting" name="t20WinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WinsStats')">Search</button>
                             
                         </div>
@@ -2495,7 +2495,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;result=2;template=results;type=batting" name="t20LostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;result=2;template=results;type=batting" name="t20LostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20LostStats')">Search</button>
                             
                         </div>
@@ -2516,7 +2516,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="t201stInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;innings_number=1;orderby=default;template=results;type=batting" name="t201stInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t201stInnStats')">Search</button>
                             
                         </div>
@@ -2537,7 +2537,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="t202ndInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;innings_number=2;orderby=default;template=results;type=batting" name="t202ndInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t202ndInnStats')">Search</button>
                             
                         </div>
@@ -2559,7 +2559,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="t20OppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="t20OppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsAus')">Search</button>
                                 
                             </div>
@@ -2578,7 +2578,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="t20OppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=1;orderby=default;template=results;type=batting" name="t20OppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsEng')">Search</button>
                                 
                             </div>
@@ -2597,7 +2597,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="t20OppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="t20OppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsNz')">Search</button>
                                 
                             </div>
@@ -2616,7 +2616,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="t20OppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=3;orderby=default;template=results;type=batting" name="t20OppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsSa')">Search</button>
                                 
                             </div>
@@ -2635,7 +2635,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="t20OppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=6;orderby=default;template=results;type=batting" name="t20OppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsInd')">Search</button>
                                 
                             </div>
@@ -2654,7 +2654,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="t20OppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=7;orderby=default;template=results;type=batting" name="t20OppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsPak')">Search</button>
                                 
                             </div>
@@ -2673,7 +2673,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="t20OppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=25;orderby=default;template=results;type=batting" name="t20OppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsBan')">Search</button>
                                 
                             </div>
@@ -2692,7 +2692,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="t20OppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=8;orderby=default;template=results;type=batting" name="t20OppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsSl')">Search</button>
                                 
                             </div>
@@ -2711,7 +2711,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="t20OppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=4;orderby=default;template=results;type=batting" name="t20OppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsWi')">Search</button>
                                 
                             </div>
@@ -2730,7 +2730,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="t20OppStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=29;orderby=default;template=results;type=batting" name="t20OppStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsIre')">Search</button>
                                 
                             </div>
@@ -2749,7 +2749,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="t20OppStatsAfg_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=40;orderby=default;template=results;type=batting" name="t20OppStatsAfg_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsAfg')">Search</button>
                                 
                             </div>
@@ -2768,7 +2768,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="t20OppStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=9;orderby=default;template=results;type=batting" name="t20OppStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20OppStatsZim')">Search</button>
                                 
                             </div>
@@ -2792,7 +2792,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="t20VenueStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;type=batting" name="t20VenueStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsAus')">Search</button>
                                 
                             </div>
@@ -2811,7 +2811,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=1;orderby=default;template=results;type=batting" name="t20VenueStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=1;orderby=default;template=results;type=batting" name="t20VenueStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsEng')">Search</button>
                                 
                             </div>
@@ -2830,7 +2830,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=5;orderby=default;template=results;type=batting" name="t20VenueStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=5;orderby=default;template=results;type=batting" name="t20VenueStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsNz')">Search</button>
                                 
                             </div>
@@ -2849,7 +2849,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=3;orderby=default;template=results;type=batting" name="t20VenueStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=3;orderby=default;template=results;type=batting" name="t20VenueStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsSa')">Search</button>
                                 
                             </div>
@@ -2868,7 +2868,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=6;orderby=default;template=results;type=batting" name="t20VenueStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=6;orderby=default;template=results;type=batting" name="t20VenueStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsInd')">Search</button>
                                 
                             </div>
@@ -2887,7 +2887,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=7;orderby=default;template=results;type=batting" name="t20VenueStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=7;orderby=default;template=results;type=batting" name="t20VenueStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsPak')">Search</button>
                                 
                             </div>
@@ -2906,7 +2906,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=25;orderby=default;template=results;type=batting" name="t20VenueStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=25;orderby=default;template=results;type=batting" name="t20VenueStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsBan')">Search</button>
                                 
                             </div>
@@ -2925,7 +2925,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=8;orderby=default;template=results;type=batting" name="t20VenueStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=8;orderby=default;template=results;type=batting" name="t20VenueStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsSl')">Search</button>
                                 
                             </div>
@@ -2944,7 +2944,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;host=4;orderby=default;template=results;type=batting" name="t20VenueStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;host=4;orderby=default;template=results;type=batting" name="t20VenueStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20VenueStatsWi')">Search</button>
                                 
                             </div>
@@ -2989,7 +2989,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;template=results;trophy=89;type=batting" name="t20WcCareerStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;template=results;trophy=89;type=batting" name="t20WcCareerStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcCareerStats')">Search</button>
                             
                         </div>
@@ -3016,7 +3016,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;home_or_away=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcHomeStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;home_or_away=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcHomeStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcHomeStats')">Search</button>
                             
                         </div>
@@ -3037,7 +3037,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;home_or_away=2;home_or_away=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcAwayStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;home_or_away=2;home_or_away=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcAwayStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcAwayStats')">Search</button>
                             
                         </div>
@@ -3058,7 +3058,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;result=1;template=results;trophy=89;type=batting" name="t20WcWinsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;result=1;template=results;trophy=89;type=batting" name="t20WcWinsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcWinsStats')">Search</button>
                             
                         </div>
@@ -3079,7 +3079,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;orderby=default;result=2;template=results;trophy=89;type=batting" name="t20WcLostStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;orderby=default;result=2;template=results;trophy=89;type=batting" name="t20WcLostStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcLostStats')">Search</button>
                             
                         </div>
@@ -3100,7 +3100,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;innings_number=1;orderby=default;template=results;trophy=89;type=batting" name="t20Wc1stInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;innings_number=1;orderby=default;template=results;trophy=89;type=batting" name="t20Wc1stInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20Wc1stInnStats')">Search</button>
                             
                         </div>
@@ -3121,7 +3121,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;innings_number=2;orderby=default;template=results;trophy=89;type=batting" name="t20Wc2ndInnStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;innings_number=2;orderby=default;template=results;trophy=89;type=batting" name="t20Wc2ndInnStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20Wc2ndInnStats')">Search</button>
                             
                         </div>
@@ -3142,7 +3142,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;final_type=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcSemisStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;final_type=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcSemisStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcSemisStats')">Search</button>
                             
                         </div>
@@ -3163,7 +3163,7 @@
                 
                         <div class="iframe-section margins">
                             
-                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;final_type=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcFinalsStats_">
+                            <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;final_type=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcFinalsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcFinalsStats')">Search</button>
                             
                         </div>
@@ -3185,7 +3185,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsAus_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=2;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsAus_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsAus')">Search</button>
                                 
                             </div>
@@ -3204,7 +3204,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsEng_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsEng_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsEng')">Search</button>
                                 
                             </div>
@@ -3223,7 +3223,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=5;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=5;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsNz')">Search</button>
                                 
                             </div>
@@ -3242,7 +3242,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsSa_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsSa_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsSa')">Search</button>
                                 
                             </div>
@@ -3261,7 +3261,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=6;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsInd_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=6;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsInd_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsInd')">Search</button>
                                 
                             </div>
@@ -3280,7 +3280,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=7;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsPak_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=7;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsPak_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsPak')">Search</button>
                                 
                             </div>
@@ -3299,7 +3299,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=25;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsBan_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=25;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsBan_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsBan')">Search</button>
                                 
                             </div>
@@ -3318,7 +3318,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=8;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsSl_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=8;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsSl_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsSl')">Search</button>
                                 
                             </div>
@@ -3337,7 +3337,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=4;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsWi_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=4;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsWi_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsWi')">Search</button>
                                 
                             </div>
@@ -3356,7 +3356,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=29;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsIre_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=29;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsIre_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsIre')">Search</button>
                                 
                             </div>
@@ -3375,7 +3375,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=40;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsAfg_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=40;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsAfg_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsAfg')">Search</button>
                                 
                             </div>
@@ -3393,7 +3393,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.id  %>.html?class=3;filter=advanced;opposition=9;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsZim_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;opposition=9;orderby=default;template=results;trophy=89;type=batting" name="t20WcOppStatsZim_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'t20WcOppStatsZim')">Search</button>
                                 
                             </div>
@@ -3430,10 +3430,9 @@
                 </fieldset>
 
             
-                <label><input type="checkbox" onchange="testing()">Testing</label><br>
 
                 <!-- ///////////////////////////////////////////////////////////// -->
-                <button type="submit" id="submit">Submit</button>
+                <button type="submit" id="submit" style="width: 100px; height: 30px;margin-left: 5%;">Submit</button>
             </form>
                 
         </div>

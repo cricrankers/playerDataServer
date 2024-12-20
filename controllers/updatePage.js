@@ -1,36 +1,21 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { client } from "../db/connection.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const playerListFilePath = path.resolve(__dirname, '../utils/playerList.json');
+const database = client.db("cricrankers");
+const playerListCollection = database.collection("playerList");
 
 async function updatePlayerPage(req, res) {
   try {
-    const data = await fs.promises.readFile(playerListFilePath, 'utf8');
-    const players = JSON.parse(data); 
+    // Fetch all players from the playerList collection
+    const players = await playerListCollection.find({}).toArray();
 
-    const playerList = [];
-
-    for (let id in players) {
-      const player = players[id];
-
-      if (player.name) {
-        playerList.push({
-          id: id,      
-          name: player.name
-        });
-      }
+    if (!players || players.length === 0) {
+      return res.status(500).json({ error: "No valid players found in the database" });
     }
 
-    if (playerList.length === 0) {
-      return res.status(500).json({ error: 'No valid players found in the list' });
-    }
-
-    const playerOptions = playerList
-      .map(player => `<option value="${player.id}">${player.name} (ID: ${player.id})</option>`)
-      .join('');
+    // Map players into an array of options, using the `player_id`
+    const playerOptions = players
+      .map(player => `<option value="${player.player_id}">${player.name} (ID: ${player.player_id})</option>`)
+      .join("");
 
     res.send(`
       <!DOCTYPE html>
@@ -88,7 +73,7 @@ async function updatePlayerPage(req, res) {
       </html>
     `);
   } catch (err) {
-    console.error("Error reading or parsing file:", err);
+    console.error("Error fetching player data:", err);
     return res.status(500).send("Error loading player data.");
   }
 }
