@@ -181,6 +181,10 @@
 
                 <h1>All Format Form</h1>
                 <fieldset id="allFormatForm">
+                     <div id="player-url">
+
+                     </div>
+
                     <!-- biodataBox -->
                     <fieldset id="bioData" class="box">
                         <span id="playerUrl"></span><br>
@@ -1034,7 +1038,7 @@
                 
                             <div class="iframe-section margins">
                                 
-                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%-player.id%>.html?class=1;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="testOppStatsNz_">
+                                <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%-player.player_id%>.html?class=1;filter=advanced;opposition=5;orderby=default;template=results;type=batting" name="testOppStatsNz_">
                                 <button type="button" class="search-btn" onclick="scrap(2,'testOppStatsNz')">Search</button>
                                 
                             </div>

@@ -329,6 +329,16 @@ async function scrapYear(rowNo, sectionId) {
 
 function displayCareerAveragesTable(doc, rowNo, section, tableContainer, isYear = false) {
     const tables = doc.querySelectorAll('table.engineTable');
+    const playerUrl = document.getElementById('player-url');
+    const anchorElement = doc.querySelector('.icc-home a');
+    
+    if (anchorElement) {
+        playerUrl.innerText = anchorElement.innerText;
+    } else {
+        console.error('Anchor element not found inside .icc-home');
+    }
+    
+
     let careerAveragesTable = Array.from(tables).find((table) =>
         table.querySelector('caption')?.innerText.trim() === 'Career averages'
     );
