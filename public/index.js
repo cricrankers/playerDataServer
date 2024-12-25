@@ -244,10 +244,10 @@ async function retryFetchUrlContent(url, retries = 0) {
     } catch (error) {
         if (retries < maxRetries) {
             console.log(`Retrying... Attempt ${retries + 1} for ${url}`);
-            return retryFetchUrlContent(url, retries + 1);  // Retry fetching
+            return retryFetchUrlContent(url, retries + 1);  
         }
-        urlResponseMap.set(url, { error: error.message });
-        throw error;  // After max retries, throw the error
+        throw Error
+        
     }
 }
 
@@ -360,7 +360,7 @@ function displayCareerAveragesTable(doc, rowNo, section, tableContainer, isYear 
     }
 }
 
-function populateFields(columns, section, isYear) {
+function populateFields(columns, section) {
     const populateField = (selector, value) => {
         try {
             section.querySelector(selector).value = value;
@@ -369,30 +369,38 @@ function populateFields(columns, section, isYear) {
         }
     };
 
-    const isSpanPresent = columns[1]?.innerText.toLowerCase().includes('-');
-    if (isYear || !isSpanPresent) {
-      
-        populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
-        populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
-        populateField('#matches', columns[1]?.innerText.trim());
-        populateField('#innings', columns[2]?.innerText.trim());
-        populateField('#runs', columns[4]?.innerText.trim());
-        populateField('#average', columns[6]?.innerText.trim());
-        populateField('#strikeRate', columns[8]?.innerText.trim());
-        populateField('#fifties', columns[10]?.innerText.trim());
-        populateField('#hundreds', columns[9]?.innerText.trim());
-    } else {
-        populateField('#debut', columns[1]?.innerText.trim().split('-')[0]);
-        populateField('#last-played', columns[1]?.innerText.trim().split('-')[1]);
-        populateField('#matches', columns[2]?.innerText.trim());
-        populateField('#innings', columns[3]?.innerText.trim());
-        populateField('#runs', columns[5]?.innerText.trim());
-        populateField('#average', columns[7]?.innerText.trim());
-        populateField('#strikeRate', columns[9]?.innerText.trim());
-        populateField('#fifties', columns[11]?.innerText.trim());
-        populateField('#hundreds', columns[10]?.innerText.trim());
-    }
+    // Map header titles to corresponding field selectors
+    const fieldMapping = {
+        "playing span": ["#debut", "#last-played"],
+        "matches played": "#matches",
+        "innings batted": "#innings",
+        "not outs": "#notOuts",
+        "runs scored": "#runs",
+        "batting average": "#average",
+        "batting strike rate": "#strikeRate",
+        "hundreds scored": "#hundreds",
+        "scores between 50 and 99": "#fifties",
+        "boundary fours": "#fours",
+        "boundary sixes": "#sixes"
+    };
+
+    // Extract column titles from the table header
+    const headers = Array.from(columns[0].closest("table").querySelectorAll("thead th")).map(th => th.title.toLowerCase());
+
+    // Populate fields based on headers and mapping
+    headers.forEach((title, index) => {
+        const selector = fieldMapping[title];
+        if (Array.isArray(selector)) {
+            // Special case for "playing span" with debut and last-played
+            const spanParts = columns[index]?.innerText.trim().split('-') || [];
+            populateField(selector[0], spanParts[0]);
+            populateField(selector[1], spanParts[1]);
+        } else if (selector) {
+            populateField(selector, columns[index]?.innerText.trim());
+        }
+    });
 }
+
 
 // ---------------------------- Scrap Engine Table ---------------------------- //
 async function scrapEngineTable(sectionId) {
