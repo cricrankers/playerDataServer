@@ -81,16 +81,12 @@ function fillMin() {
         checkbox.addEventListener('change', function () {
             const fieldset = this.closest('fieldset');
             const inputs = fieldset.querySelectorAll('input[type="number"]');
-            const inputs2 = fieldset.querySelectorAll('[id="average"]');
 
-            // If the checkbox is checked, set all number inputs and the average field to '0' or '-'
             inputs.forEach((input) => {
                 input.value = this.checked ? '0' : ''; // Set '0' for other number inputs
             });
 
-            inputs2.forEach((input) => {
-                input.value = this.checked ? '-' : ''; // Set '-' for the average field
-            });
+           
         });
     });
 }
@@ -356,7 +352,8 @@ function displayCareerAveragesTable(doc, rowNo, section, tableContainer, isYear 
             tableContainer.innerHTML = '<p>Filtered row not found!</p>';
         }
     } else {
-        tableContainer.innerHTML = '<p>Career Averages Table not found!</p>';
+        
+        tableContainer.innerHTML = '<p>Career Averages Table not found</p>';
     }
 }
 
