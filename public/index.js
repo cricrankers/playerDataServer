@@ -76,6 +76,15 @@ document.querySelectorAll('.fill-min').forEach((checkbox) => {
     });
 });
 
+function fillMinSection(section){
+   const fieldset = section.closest('fieldset');
+   const inputs = fieldset.querySelectorAll('input[type="number"]');
+
+        inputs.forEach((input) => {
+            input.value = '0';
+        });
+}
+
 function fillMin() {
     document.querySelectorAll('.fill-min').forEach((checkbox) => {
         checkbox.addEventListener('change', function () {
@@ -352,7 +361,7 @@ function displayCareerAveragesTable(doc, rowNo, section, tableContainer, isYear 
             tableContainer.innerHTML = '<p>Filtered row not found!</p>';
         }
     } else {
-        
+        fillMinSection(section)
         tableContainer.innerHTML = '<p>Career Averages Table not found</p>';
     }
 }
