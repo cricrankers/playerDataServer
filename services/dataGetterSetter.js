@@ -1586,8 +1586,8 @@ async function getSett20FormatData(data) {
 async function getSett20WcData(data) {
     
     const t20WcCareerStats = {
-        debutYear: data.t20WcCareerStats_pname,
-        lastPlayedYear: data.t20WcCareerStats_dname,
+        debutYear: data.t20WcCareerStats_debut,
+        lastPlayedYear: data.t20WcCareerStats_last_played,
         matches: data.t20WcCareerStats_matches,
         innings: data.t20WcCareerStats_innings,
         runs: data.t20WcCareerStats_runs,
