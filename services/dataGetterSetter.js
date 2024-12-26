@@ -1,29 +1,26 @@
 //helperFunction
-async function generateYearObject(yearId, startYear, endYear, data) {
-    let j = 0;
+function generateYearObject(yearId, startYear, endYear, data) {
     let yearArr = [];
     
     for (let i = startYear; i <= endYear; i++) {
-        yearArr[j] = {
+        yearArr.push({
             year: `${i}`,
-            matches: data[`${yearId}_${i}_matches`],
-            innings: data[`${yearId}_${i}_innings`],
-            runs: data[`${yearId}_${i}_runs`],
-            average: data[`${yearId}_${i}_average`],
-            strikeRate: data[`${yearId}_${i}_strikeRate`],
-            fifties: data[`${yearId}_${i}_fifties`],
-            hundreds: data[`${yearId}_${i}_hundreds`],
-        };
-        j++;
+            matches: data[`${yearId}_${i}_matches`] || 0,
+            innings: data[`${yearId}_${i}_innings`] || 0,
+            runs: data[`${yearId}_${i}_runs`] || 0,
+            average: data[`${yearId}_${i}_average`] || 0,
+            strikeRate: data[`${yearId}_${i}_strikeRate`] || 0,
+            fifties: data[`${yearId}_${i}_fifties`] || 0,
+            hundreds: data[`${yearId}_${i}_hundreds`] || 0,
+        });
+        
     }
     return yearArr;
 }
 
-async function getSetAllFormatData(data){
 
-    
-      
-    const careerStats = {
+async function getSetAllFormatData(data){
+    const careerStats = {      
         debutYear: data.allFormatCareerStats_debut,
         lastPlayedYear: data.allFormatCareerStats_last_played,
         matches: data.allFormatCareerStats_matches,

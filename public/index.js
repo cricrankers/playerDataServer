@@ -204,11 +204,11 @@ function generateYear(event, yearId,type) {
                   name="${yearId}_${yearLabel}_runs">
            <br>
            <label for="average" class="margins">Average: </label>
-           <input type="number" class="margins" id="average" min="0" max="1000" step="0.01" required 
+           <input type="number" class="margins" id="average"  max="1000" step="0.01"  
                   name="${yearId}_${yearLabel}_average">
            <br>
            <label for="strikeRate" class="margins">Strike Rate: </label>
-           <input type="number" class="margins" id="strikeRate" min="0" max="500" step="0.01" required 
+           <input type="number" class="margins" id="strikeRate"  max="500" step="0.01"  
                   name="${yearId}_${yearLabel}_strikeRate">
            <br>
            <label for="fifties" class="margins">50s: </label>

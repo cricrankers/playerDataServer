@@ -154,10 +154,11 @@
 
 <body >
 
-    <div class="container">
+<div class="container">
         <!--////////////////// //////////////////////////////////////////////////// -->
             
-        <div class="form">
+        <div class="form" >
+
             <fieldset>
                 <form action="/update" method="get">
                     <button type="submit">Update / Insert any Player's Data</button><br><br>
@@ -169,14 +170,16 @@
                     <button type="submit">Delete any Players' Data</button><br>
                 </form>
             </fieldset>
-          <fieldset>
 
-            <form action="/add" method="post">
-                <label><input type="checkbox" onchange="testing()">Testing</label>
-                <button type="submit" id="">Submit</button><br><br><br>
-          </fieldset>
+          
+            <form action="/add" method="post" id="form">
+                
+                <fieldset>
+                    <label><input type="checkbox" onchange="testing()">Testing</label>
+                    <button type="submit" id="">Submit</button><br><br><br>    
+                </fieldset>
+                
             
-
                 <h1>All Format Form</h1>
                 <fieldset id="allFormatForm">
                      <div id="player-url">
@@ -204,7 +207,7 @@
                         
         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="allFormatCareerStats_debut"><br>
-                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="allFormatCareerStats_last-played"><br>
+                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="allFormatCareerStats_last_played"><br>
                         <button type="button" onclick="fillData('allFormatCareerStats','allFormatYearStats')">Fill</button>
                         <button type="button" class="generate-btn margins" onclick="generateYear(event,'allFormatYearStats','allFormat')">Generate Fields</button>
                         <button type="button" class="search-section margins" onclick="addUrlsFromSection('allFormatYearStats')">Search all</button><br>
@@ -782,7 +785,7 @@
                         </div>
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="testCareerStats_debut"><br>
-                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="testCareerStats_last-played"><br>
+                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="testCareerStats_last_played"><br>
                         <button type="button" onclick="fillData('testCareerStats','testYearStats')">Fill</button>
                         <button type="button" class="generate-btn margins" onclick="generateYear(event,'testYearStats','test')">Generate Fields</button>
                         <button type="button" class="search-section margins" onclick="addUrlsFromSection('testYearStats')">Search all</button><br>
@@ -1367,7 +1370,7 @@
                         </div>
         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="odiCareerStats_debut"><br>
-                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="odiCareerStats_last-played"><br>
+                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="odiCareerStats_last_played"><br>
                         <button type="button" onclick="fillData('odiCareerStats','odiYearStats')">Fill</button>
                         <button type="button" class="generate-btn margins" onclick="generateYear(event,'odiYearStats','odi')">Generate Fields</button>
                         <button type="button" class="search-section margins" onclick="addUrlsFromSection('odiYearStats')">Search all</button><br>
@@ -2388,7 +2391,7 @@
                         </div>
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20CareerStats_debut"><br>
-                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20CareerStats_last-played"><br>  
+                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20CareerStats_last_played"><br>  
                         <button type="button" onclick="fillData('t20CareerStats','t20YearStats')">Fill</button>
                         <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20YearStats','t20')">Generate Fields</button>
                         <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20YearStats')">Search all</button><br>
@@ -2967,7 +2970,7 @@
                         </div>
                         
                         <label for="debut" class="margins">Debut (year): </label><input type="number" class="margins" id="debut" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20WcCareerStats_debut"><br>
-                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20WcCareerStats_last-played"><br>
+                        <label for="last-played" class="margins">Last Played (year): </label><input type="number" class="margins" id="last-played" required="" min="0" max="2030" pattern="^(19[0-9]{2}|20[0-2][0-3])$" name="t20WcCareerStats_last_played"><br>
                         <button type="button" onclick="fillData('t20WcCareerStats','t20WcYearStats')">Fill</button>
                         <button type="button" class="generate-btn margins" onclick="generateYear(event,'t20WcYearStats','t20Wc')">Generate Fields</button>
                         <button type="button" class="search-section margins" onclick="addUrlsFromSection('t20WcYearStats')">Search all</button><br>
@@ -3104,9 +3107,9 @@
                     <!-- Semi-Final Stats -->
                     <fieldset id="t20WcSemisStats" class="margins box">
                         <legend class="legend">Semi-Finals Stats</legend>
-                
+                    
                         <label><input type="checkbox" class="fill-min" name="t20WcSemisStats_">Not Applicable</label><br>
-                
+                    
                         <div class="iframe-section margins">
                             <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;final_type=3;orderby=default;template=results;trophy=89;type=batting" name="t20WcSemisStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcSemisStats')">Search</button>
@@ -3118,15 +3121,16 @@
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="t20WcSemisStats_runs"><br>
                             <label for="average" class="margins">Average: </label><input type="number" class="margins" id="average"    pattern="^(500(\.0{1,2})?|[0-4]?[0-9]{1,2}(\.[0-9]{1,2})?)$" step="0.01" name="t20WcSemisStats_average" max="500"><br>
                             <label for="strikeRate" class="margins">Strike Rate: </label><input type="number" class="margins"  step="0.01" id="strikeRate"  pattern="^[0-9]{1,3}(\.[0-9]{1,2})?$|^500(\.00)?$" name="t20WcSemisStats_strikeRate" max="500"><br>
-                            <label for="fifties" class="margins">50s: </label><input type="number" class="margins" id="fifties" min="0" required="" max="300" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcSemisStats_fifties"><br>
-                            <label for="hundreds" class="margins">100s: </label><input type="number" class="margins" id="hundreds" min="0" max="110" required="" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcSemisStats_hundreds"><br>
+                             <label for="fifties" class="margins">50s: </label><input type="number" class="margins" id="fifties" min="0" required="" max="300" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcSemisStats_fifties"><br>
+                            <label for="hundreds" class="margins">100s: </label><input type="number" class="margins" id="hundreds" min="0" max="110" required="" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcSemisStats_hundreds"></label><br>
                     </fieldset>
+
                     <!-- Final Stats -->
                     <fieldset id="t20WcFinalsStats" class="margins box">
                         <legend class="legend">Finals Stats</legend>
-                
+                    
                         <label><input type="checkbox" class="fill-min" name="t20WcFinalsStats_">Not Applicable</label><br>
-                
+                    
                         <div class="iframe-section margins">
                             <input type="text" class="url-input" value="https://stats.espncricinfo.com/ci/engine/player/<%- player.player_id %>.html?class=3;filter=advanced;final_type=1;orderby=default;template=results;trophy=89;type=batting" name="t20WcFinalsStats_">
                             <button type="button" class="search-btn" onclick="scrap(2,'t20WcFinalsStats')">Search</button>
@@ -3137,10 +3141,11 @@
                             <label for="innings" class="margins">Innings: </label><input type="number" class="margins" id="innings" required="" min="0" max="1000" pattern="^(0|[1-9][0-9]{0,2}|1000)$" name="t20WcFinalsStats_innings"><br>
                             <label for="runs" class="margins">Runs: </label><input type="number" class="margins" id="runs" required="" min="0" max="35000" pattern="^(0|[1-9][0-9]{0,4}|[1-2][0-9]{4}|3[0-4][0-9]{3}|35(0{1,3}|[0-9]{1,3}))$" name="t20WcFinalsStats_runs"><br>
                             <label for="average" class="margins">Average: </label><input type="number" class="margins" id="average"    pattern="^(500(\.0{1,2})?|[0-4]?[0-9]{1,2}(\.[0-9]{1,2})?)$" step="0.01" name="t20WcFinalsStats_average" max="500"><br>
-                            <label for="strikeRate" class="margins">Strike Rate: </label><input type="number" class="margins"  step="0.01" id="strikeRate"  pattern="^[0-9]{1,3}(\.[0-9]{1,2})?$|^500(\.00)?$" name="t20WcFinalsStats_strikeRate" max="500"><br>
+                           <label for="strikeRate" class="margins">Strike Rate: </label><input type="number" class="margins"  step="0.01" id="strikeRate"  pattern="^[0-9]{1,3}(\.[0-9]{1,2})?$|^500(\.00)?$" name="t20WcFinalsStats_strikeRate" max="500"><br>
                             <label for="fifties" class="margins">50s: </label><input type="number" class="margins" id="fifties" min="0" required="" max="300" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcFinalsStats_fifties"><br>
-                            <label for="hundreds" class="margins">100s: </label><input type="number" class="margins" id="hundreds" min="0" max="110" required="" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcFinalsStats_hundreds"><br>
+                            <label for="hundreds" class="margins">100s: </label><input type="number" class="margins" id="hundreds" min="0" max="110" required="" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcFinalsStats_hundreds"></label><br>
                     </fieldset>
+
                     <!-- Vs Opposition Stats -->
                     <fieldset id="t20WcOppStats" class="margins box">
                         <legend class="legend">Vs Oppositions</legend>
@@ -3162,7 +3167,7 @@
                             <label for="strikeRate" class="margins">Strike Rate: </label><input type="number" class="margins"  step="0.01" id="strikeRate"  pattern="^[0-9]{1,3}(\.[0-9]{1,2})?$|^500(\.00)?$" name="t20WcOppStatsAus_strikeRate" max="500"><br>
                             <label for="fifties" class="margins">50s: </label><input type="number" class="margins" id="fifties" min="0" required="" max="300" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcOppStatsAus_fifties"><br>
                             <label for="hundreds" class="margins">100s: </label><input type="number" class="margins" id="hundreds" min="0" max="110" required="" pattern="^(0|[1-9][0-9]{0,2}|[1-4][0-9]{2}|500(\.0{1,2})?)$" name="t20WcOppStatsAus_hundreds"><br>
-                    </fieldset>
+                        </fieldset>
                 
                         <fieldset id="t20WcOppStatsEng" class=" box"><legend>Vs England</legend>
                             <label><input type="checkbox" class="fill-min" name="t20WcOppStatsEng_">Not Applicable</label><br>
@@ -3401,7 +3406,7 @@
                 <!-- ///////////////////////////////////////////////////////////// -->
                 <button type="submit" id="submit" style="width: 100px; height: 30px;margin-left: 5%;">Submit</button>
             </form>
-                
+        
         </div>
             
         <!--  ////////////////////////////////////////////////////////////////-->
@@ -3426,5 +3431,26 @@
 </div>
 
 </body>
-
+<!-- <script>
+    // Select the form
+    const form = document.getElementById('form');
+  
+    // Listen for the submit event
+    form.addEventListener('submit', function (event) {
+      // Prevent the form from actually submitting
+      event.preventDefault();
+  
+      // Create a FormData object to gather all form inputs
+      const formData = new FormData(form);
+  
+      // Convert the FormData entries into an object
+      const dataObject = {};
+      formData.forEach((value, key) => {
+        dataObject[key] = value;
+      });
+  
+      // Print the collected data to the console
+      console.log('Form Data:', dataObject);
+    });
+  </script> -->
 </html>
