@@ -36,9 +36,17 @@ async function writeDataDb(data) {
     await writeDataMongo(playerData);
 
     await playerListCollection.updateOne(
-      { player_id: data.bioData_pid },
-      { $set: { inserted: true } }
-    );
+      { player_id: data.bioData_pid }, 
+      { 
+          $set: { 
+              inserted: true, 
+              updatedAt: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), 
+              testing: data.testingField === 'true' 
+          }
+      }
+  );
+  
+  
     console.log(`Player with ID ${data.bioData_pid} marked as inserted.`);
   } catch (error) {
     console.error("Error occurred while inserting player data:", error);

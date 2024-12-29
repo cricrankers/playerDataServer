@@ -167,7 +167,10 @@
                     <button type="submit">Get Data of Existing Player</button><br><br>
                 </form>
                 <form action="/delete" method="get">
-                    <button type="submit">Delete any Players' Data</button><br>
+                    <button type="submit">Delete any Players' Data</button><br><br>
+                </form>
+                <form action="/getTestingPlayer" method="get">
+                    <button type="submit">Update Testing Player</button><br>
                 </form>
             </fieldset>
 
@@ -175,13 +178,14 @@
             <form action="/add" method="post" id="form">
 
                 <fieldset>
-                    <label><input type="checkbox" onchange="testing()">Testing</label>
+                    <label><input type="checkbox" onchange="testing()" id="checkBox">Testing</label>
                     <button type="submit" id="">Submit</button><br><br><br>    
                 </fieldset>
                 
             
                 <h1>All Format Form</h1>
                 <fieldset id="allFormatForm">
+                    
                      <div id="player-url">
 
                      </div>
@@ -194,7 +198,16 @@
                         <label for="pname" class="margins">Name: </label><input type="text" readonly="" value="<%- player.name  %>" class="margins" id="pname" name="bioData_pname"><br>
                         <label for="dname" class="margins">DisplayName: </label><input type="text" value="<%- player.display_name%>" class="margins" id="dname" name="bioData_dname"><br>
                         <label for="country" class="margins">Country: </label><input type="text" readonly="" value="<%- player.country  %>" class="margins" id="country" name="bioData_country"><br>
-                        <label for="inserted" class="margins">Data already inserted: </label><input type="text" readonly value="<%- player.inserted  %>" class="margins" id="inserted">
+                        <label for="inserted" class="margins">Data already inserted: </label><input type="text" readonly value="<%- player.inserted  %>" class="margins" id="inserted"><br>
+                        <label for="testingField" class="margins">Testing: </label>
+                        <select class="margins" id="testingField" name="testingField">
+                        <option value="true" <%= player.testing === 'true' ? 'selected' : '' %>>True</option>
+                         <option value="false" <%= player.testing === 'false' || typeof player.testing === 'undefined' ? 'selected' : '' %>>False</option>
+                        </select><br>
+
+                        <label for="updated At" class="margins">Updated At: </label><input type="text" readonly value="<%- player.updatedAt  %>" class="margins" id="updated"><br>
+                        <label for="status" class="margins">Status: </label><input type="text" readonly value="<%- player.status  %>" class="margins" id="status"><br>
+
                     </fieldset>
                     <!-- Career Stats Box -->
                     <fieldset id="allFormatCareerStats" class="margins box">

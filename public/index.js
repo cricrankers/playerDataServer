@@ -101,15 +101,23 @@ function fillMin() {
 }
 
 
-function testing(){
+function testing() {
+    const checkbox = document.getElementById("checkBox");
+    const testingField = document.getElementById("testingField");
+    testingField.value = checkbox.checked ? "true" : "false";
 
     let inputs = document.querySelectorAll('input[type="number"]');
     inputs.forEach((input) => {
-           let minvalue =  input.getAttribute('min')
-         input.value = minvalue;
-     });
-         
+        let minvalue = input.getAttribute('min');
+        
+        if (input.value === minvalue) {
+            input.value = ''; 
+        } else {
+            input.value = minvalue;
+        }
+    });
 }
+
 /**
  * Handles the generation of input fields for each year based on debut and last years.
  */

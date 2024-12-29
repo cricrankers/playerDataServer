@@ -6,6 +6,7 @@ const playerListCollection = database.collection('playerList');
 
 async function addPlayer(req, res) {
     try {
+        
         await writeDataDb(req.body);
 
         const playerId = req.body.bioData_pid;
