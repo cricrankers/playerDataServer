@@ -7,8 +7,8 @@ import { deletePlayerPage } from '../controllers/deletePlayerPage.js';
 import { getPlayerPage } from '../controllers/getPlayerPage.js';
 import { deletePlayer } from '../controllers/deletePlayer.js';
 import { getPlayerData } from '../controllers/getPlayer.js';
-import { getTestingPlayer } from '../controllers/getTestingPlayer.js';
-import { getActivePlayer } from '../controllers/getActivePlayers.js';
+import { getTestingPlayer, getTestingPlayerPage } from '../controllers/getTestingPlayerPage.js';
+import { getActivePlayer, getActivePlayerPage } from '../controllers/getActivePlayersPage.js';
 
 const Router = express.Router();
 
@@ -38,8 +38,14 @@ Router.route('/getPlayer')
 Router.route('/getPlayerData')
 .get(getPlayerData)
 
+Router.route('/getTestingPlayerPage')
+.get(getTestingPlayerPage)
+
 Router.route('/getTestingPlayer')
 .get(getTestingPlayer)
+
+Router.route('/getActivePlayerPage')
+.get(getActivePlayerPage)
 
 Router.route('/getActivePlayer')
 .get(getActivePlayer)

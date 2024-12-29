@@ -41,7 +41,8 @@ async function writeDataDb(data) {
           $set: { 
               inserted: true, 
               updatedAt: new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), 
-              testing: data.testingField === 'true' 
+              testing: data.testingField === 'true',
+              status: data.statusField, 
           }
       }
   );

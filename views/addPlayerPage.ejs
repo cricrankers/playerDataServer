@@ -169,8 +169,11 @@
                 <form action="/delete" method="get">
                     <button type="submit">Delete any Players' Data</button><br><br>
                 </form>
-                <form action="/getTestingPlayer" method="get">
-                    <button type="submit">Update Testing Player</button><br>
+                <form action="/getTestingPlayerPage" method="get">
+                    <button type="submit">Update Testing Player</button><br><br>
+                </form>
+                <form action="/getActivePlayerPage" method="get">
+                    <button type="submit">Update Active Player</button><br>
                 </form>
             </fieldset>
 
@@ -198,16 +201,20 @@
                         <label for="pname" class="margins">Name: </label><input type="text" readonly="" value="<%- player.name  %>" class="margins" id="pname" name="bioData_pname"><br>
                         <label for="dname" class="margins">DisplayName: </label><input type="text" value="<%- player.display_name%>" class="margins" id="dname" name="bioData_dname"><br>
                         <label for="country" class="margins">Country: </label><input type="text" readonly="" value="<%- player.country  %>" class="margins" id="country" name="bioData_country"><br>
-                        <label for="inserted" class="margins">Data already inserted: </label><input type="text" readonly value="<%- player.inserted  %>" class="margins" id="inserted"><br>
+                        <label for="inserted" class="margins">Data already inserted: </label>
+                        <input type="text" readonly value="<%- player.inserted !== undefined ? player.inserted : 'false' %>" class="margins" id="inserted"><br>
                         <label for="testingField" class="margins">Testing: </label>
                         <select class="margins" id="testingField" name="testingField">
                         <option value="true" <%= player.testing === 'true' ? 'selected' : '' %>>True</option>
                          <option value="false" <%= player.testing === 'false' || typeof player.testing === 'undefined' ? 'selected' : '' %>>False</option>
                         </select><br>
-
+                
                         <label for="updated At" class="margins">Updated At: </label><input type="text" readonly value="<%- player.updatedAt  %>" class="margins" id="updated"><br>
-                        <label for="status" class="margins">Status: </label><input type="text" readonly value="<%- player.status  %>" class="margins" id="status"><br>
-
+                        <label for="statusField" class="margins">Status: </label>
+                        <select class="margins" id="statusField" name="statusField" value = "<%- player.status %>">
+                          <option value="active" <%= player.status === 'active' ? 'selected' : (typeof player.status === 'undefined' ? 'selected' : '') %>>Active</option>
+                          <option value="retired" <%= player.status === 'retired' ? 'selected' : '' %>>Retired</option>
+                        </select><br>
                     </fieldset>
                     <!-- Career Stats Box -->
                     <fieldset id="allFormatCareerStats" class="margins box">

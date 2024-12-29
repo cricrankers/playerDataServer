@@ -1,18 +1,25 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import { client } from "../db/connection.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const addPlayerPagePath = path.join(__dirname, "../views/addPlayerPage.ejs");
 
 const database = client.db("cricrankers");
 const playerListCollection = database.collection("playerList");
 
-async function getActivePlayer(req, res) {
+async function getTestingPlayerPage(req, res) {
   try {
-    // Fetch all players from the playerList collection
-    const players = await playerListCollection.find({}).toArray();
+    const players = await playerListCollection.find({
+      testing: true
+    }).toArray();
 
     if (!players || players.length === 0) {
-      return res.status(500).json({ error: "No valid players found in the database" });
+      return res.status(500).json({ error: "No players with testing:true found in the database" });
     }
 
-    // Map players into an array of options, using the `player_id`
     const playerOptions = players
       .map(player => `<option value="${player.player_id}">${player.name} (ID: ${player.player_id})</option>`)
       .join("");
@@ -23,10 +30,14 @@ async function getActivePlayer(req, res) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Update Player</title>
+        <title>Update Testing Player</title>
       </head>
       <body>
-        <h1>Update Player</h1>
+        <h1>Update Testing Player</h1>
+
+        <form action="/getTestingPlayer" method="get">
+                  <button type="submit">Update Next Testing Player</button><br><br>
+        </form>
         
         <!-- Form to enter player ID manually -->
         <form id="updatePlayerForm">
@@ -36,7 +47,6 @@ async function getActivePlayer(req, res) {
         </form>
 
         <h2>Or Select a Player from the List</h2>
-        <!-- Dropdown to select player -->
         <form id="selectPlayerForm">
           <label for="playerSelect">Select Player:</label>
           <select id="playerSelect" name="playerSelect" required>
@@ -52,7 +62,7 @@ async function getActivePlayer(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerId').value.trim();
             if (playerId) {
-              window.location.href = \`/updatePlayerData?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getTestingPlayer?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please enter a valid Player ID');
             }
@@ -63,7 +73,7 @@ async function getActivePlayer(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerSelect').value;
             if (playerId) {
-              window.location.href = \`/updatePlayerData?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getTestingPlayer?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please select a player');
             }
@@ -78,4 +88,51 @@ async function getActivePlayer(req, res) {
   }
 }
 
-export { getActivePlayer };
+
+
+
+async function getTestingPlayer(req, res) {
+  // Get player ID from the request parameters
+  const { id } = req.query;
+
+  async function getPlayer() {
+    try {
+      let player;
+    console.log(id);
+      // If player ID is provided, try to find the player with that ID
+      if (id) {
+        player = await playerListCollection.findOne({
+          player_id: id,
+          testing: { $exists: true, $eq: true }
+        });
+      }
+
+      // If player is not found by ID or no ID is provided, return the first player with testing:true
+      if (!player) {
+        player = await playerListCollection.findOne({
+          testing: { $exists: true, $eq: true }
+        });
+      }
+
+      if (!player) {
+        return res.send("No players found with the testing:true condition.");
+      }
+
+      return player;
+    } catch (err) {
+      console.error("Error querying the database:", err);
+      throw err;
+    }
+  }
+
+  try {
+    const player = await getPlayer();
+    res.render(addPlayerPagePath, { player });
+  } catch (err) {
+    res.status(500).send("Error loading player data.");
+  }
+}
+
+
+
+export { getTestingPlayer ,getTestingPlayerPage };
