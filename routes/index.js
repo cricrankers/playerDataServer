@@ -9,6 +9,7 @@ import { deletePlayer } from '../controllers/deletePlayer.js';
 import { getPlayerData } from '../controllers/getPlayer.js';
 import { getTestingPlayer, getTestingPlayerPage } from '../controllers/getTestingPlayerPage.js';
 import { getActivePlayer, getActivePlayerPage } from '../controllers/getActivePlayersPage.js';
+import { getRetiredPlayer, getRetiredPlayerPage } from '../controllers/getRetiredPlayers.js';
 
 const Router = express.Router();
 
@@ -49,6 +50,13 @@ Router.route('/getActivePlayerPage')
 
 Router.route('/getActivePlayer')
 .get(getActivePlayer)
+
+
+Router.route('/getRetiredPlayerPage')
+.get(getRetiredPlayerPage)
+
+Router.route('/getRetiredPlayer')
+.get(getRetiredPlayer)
 
 Router.get('/proxy',async (req, res) => {
     const { url } = req.query;

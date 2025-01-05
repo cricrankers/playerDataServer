@@ -10,14 +10,15 @@ const addPlayerPagePath = path.join(__dirname, "../views/addPlayerPage.ejs");
 const database = client.db("cricrankers");
 const playerListCollection = database.collection("playerList");
 
-async function getTestingPlayerPage(req, res) {
+
+async function getRetiredPlayerPage(req, res) {
   try {
     const players = await playerListCollection.find({
-      testing: true
+      status: { $regex: /^retired$/i }
     }).toArray();
     console.log(players.length)
     if (!players || players.length === 0) {
-      return res.status(500).json({ error: "No players with testing:true found in the database" });
+      return res.status(500).json({ error: "No active players found in the database" });
     }
 
     const playerOptions = players
@@ -30,13 +31,13 @@ async function getTestingPlayerPage(req, res) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Update Testing Player</title>
+        <title>Update Retired Player</title>
       </head>
       <body>
-        <h1>Update Testing Player</h1>
+        <h1>Update Retired Player</h1>
 
-        <form action="/getTestingPlayer" method="get">
-                  <button type="submit">Update Next Testing Player</button><br><br>
+        <form action="/getRetiredPlayer" method="get">
+                  <button type="submit">Update Next Retired Player</button><br><br>
         </form>
         
         <!-- Form to enter player ID manually -->
@@ -62,7 +63,7 @@ async function getTestingPlayerPage(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerId').value.trim();
             if (playerId) {
-              window.location.href = \`/getTestingPlayer?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getRetiredPlayer?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please enter a valid Player ID');
             }
@@ -73,7 +74,7 @@ async function getTestingPlayerPage(req, res) {
             event.preventDefault();
             const playerId = document.getElementById('playerSelect').value;
             if (playerId) {
-              window.location.href = \`/getTestingPlayer?id=\${encodeURIComponent(playerId)}\`;
+              window.location.href = \`/getRetiredPlayer?id=\${encodeURIComponent(playerId)}\`;
             } else {
               alert('Please select a player');
             }
@@ -88,34 +89,28 @@ async function getTestingPlayerPage(req, res) {
   }
 }
 
-
-
-
-async function getTestingPlayer(req, res) {
-  // Get player ID from the request parameters
+async function getRetiredPlayer(req, res) {
   const { id } = req.query;
 
   async function getPlayer() {
     try {
       let player;
-    console.log(id);
-      // If player ID is provided, try to find the player with that ID
+
       if (id) {
         player = await playerListCollection.findOne({
           player_id: id,
-          testing: { $exists: true, $eq: true }
+          status: { $regex: /^retired$/i }
         });
       }
 
-      // If player is not found by ID or no ID is provided, return the first player with testing:true
       if (!player) {
         player = await playerListCollection.findOne({
-          testing: { $exists: true, $eq: true }
+          status: { $regex: /^retired$/i }
         });
       }
 
       if (!player) {
-        return res.send("No players found with the testing:true condition.");
+        return res.status(404).send("No players found with the active status.");
       }
 
       return player;
@@ -129,10 +124,11 @@ async function getTestingPlayer(req, res) {
     const player = await getPlayer();
     res.render(addPlayerPagePath, { player });
   } catch (err) {
+    console.error("Error loading player data:", err);  // Enhanced error logging
     res.status(500).send("Error loading player data.");
   }
 }
 
 
 
-export { getTestingPlayer ,getTestingPlayerPage };
+export { getRetiredPlayerPage ,  getRetiredPlayer};

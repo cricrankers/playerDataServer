@@ -16,7 +16,7 @@ async function getActivePlayerPage(req, res) {
     const players = await playerListCollection.find({
       status: { $regex: /^active$/i }
     }).toArray();
-
+    console.log(players.length)
     if (!players || players.length === 0) {
       return res.status(500).json({ error: "No active players found in the database" });
     }
