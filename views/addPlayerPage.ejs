@@ -208,9 +208,10 @@
                         <input type="text" readonly value="<%- player.inserted !== undefined ? player.inserted : 'false' %>" class="margins" id="inserted"><br>
                         <label for="testingField" class="margins">Testing: </label>
                         <select class="margins" id="testingField" name="testingField">
-                        <option value="true" <%= player.testing === 'true' ? 'selected' : '' %>>True</option>
-                         <option value="false" <%= player.testing === 'false' || typeof player.testing === 'undefined' ? 'selected' : '' %>>False</option>
+                            <option value="true" <%= player.testing === true ? 'selected' : '' %>>True</option>
+                            <option value="false" <%= player.testing === false || typeof player.testing === 'undefined' ? 'selected' : '' %>>False</option>
                         </select><br>
+                        
                 
                         <label for="updated At" class="margins">Updated At: </label><input type="text" readonly value="<%- player.updatedAt  %>" class="margins" id="updated"><br>
                         <label for="statusField" class="margins">Status: </label>
