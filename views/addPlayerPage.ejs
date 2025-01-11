@@ -200,7 +200,7 @@
                     <fieldset id="bioData" class="box">
                         <span id="playerUrl"></span><br>
                         <legend class="legend">Bio Data</legend>
-                        <label for="pid" class="margins">ID: </label><input type="text" readonly="" value="<%- player.player_id %>" class="margins" id="pid" name="bioData_pid"><br>
+                        <label for="pid" class="margins">ID: </label><input type="text" readonly="" value="<%- player.player_id %>" class="margins" id="pid" name="bioData_pid"><button onclick="window.location.href='/getPlayerData?id=<%- player.player_id %>'">Check Data</button><br>
                         <label for="pname" class="margins">Name: </label><input type="text" readonly="" value="<%- player.name  %>" class="margins" id="pname" name="bioData_pname"><br>
                         <label for="dname" class="margins">DisplayName: </label><input type="text" value="<%- player.display_name%>" class="margins" id="dname" name="bioData_dname"><br>
                         <label for="country" class="margins">Country: </label><input type="text" readonly="" value="<%- player.country  %>" class="margins" id="country" name="bioData_country"><br>
