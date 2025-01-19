@@ -2,13 +2,12 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 async function dataWriter(yearStats) {
-    fs.writeFileSync('yearStats.json', JSON.stringify(yearStats, null, 2));
+    fs.writeFileSync('combinedCountryStats.json', JSON.stringify(yearStats, null, 2));
     console.log('Data saved to yearStats.json');
 }
 
-async function objectGenerator(yearData, year) {
+async function objectGenerator(yearData) {
     const result = {
-        "year": year.toString(),
         "allFormat": {
             "mat": "0",
             "runs": "0",
@@ -109,8 +108,6 @@ async function extractData(html) {
 
     return data;
 }
-
-
 async function fetchUrl(url) {
     const html = [];
 
@@ -125,29 +122,48 @@ async function fetchUrl(url) {
     return html;
 }
 
-async function urlGenerator(year) {
-    let url = [];
-    
-    url[0] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[1] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[2] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[3] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
+async function urlGenerator(team) {
+    let teamId;
 
-    return url;
+    if (team === "aus") teamId = 2;
+    else if (team === "eng") teamId = 1;
+    else if (team === "ind") teamId = 6;
+    else if (team === "nz") teamId = 5;
+    else if (team === "pak") teamId = 7;
+    else if (team === "sa") teamId = 3;
+    else if (team === "sl") teamId = 8;
+    else if (team === "wi") teamId = 4;
+    else if (team === "ban") teamId = 25;
+    else if (team === "zim") teamId = 9;
+    else if (team === "afg") teamId = 40;
+    else if (team === "ire") teamId = 29;
+
+    return [
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;host=${teamId};template=results;type=aggregate`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;host=${teamId};template=results;type=aggregate`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;host=${teamId};template=results;type=aggregate`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;host=${teamId};template=results;;type=aggregate`
+    ];
 }
 
 async function main() {
-    let yearStats = [];
-    for (let year = 1900; year < 2025; year++) {
-        const url = await urlGenerator(year);
-        const html = await fetchUrl(url);
-        const data = await extractData(html);
-        const yearObject = await objectGenerator(data, year);
-        yearStats.push(yearObject);
-        console.log(year)
+    const teams = ["aus", "eng", "ind", "nz", "pak", "sa", "sl", "wi", "ban", "zim", "afg", "ire"];
+    const teamStats = [];
+
+    for (let team of teams) {
+        const yearStats = [];
+            const url = await urlGenerator(team);
+            const html = await fetchUrl(url);
+            const data = await extractData(html);
+            const yearObject = await objectGenerator(data, team);
+            yearStats.push(yearObject);
+            console.log(`Processed data for team: ${team}`);
+        
+
+        teamStats.push({ team, stats: yearStats });
     }
 
-    await dataWriter(yearStats);
+    await dataWriter(teamStats);
 }
 
 main();

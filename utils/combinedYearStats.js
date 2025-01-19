@@ -2,13 +2,11 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 async function dataWriter(yearStats) {
-    fs.writeFileSync('yearStats.json', JSON.stringify(yearStats, null, 2));
-    console.log('Data saved to yearStats.json');
+    fs.writeFileSync('combinedYearStats.json', JSON.stringify(yearStats, null, 2));
 }
 
-async function objectGenerator(yearData, year) {
+async function objectGenerator(yearData) {
     const result = {
-        "year": year.toString(),
         "allFormat": {
             "mat": "0",
             "runs": "0",
@@ -125,27 +123,26 @@ async function fetchUrl(url) {
     return html;
 }
 
-async function urlGenerator(year) {
+async function urlGenerator() {
     let url = [];
     
-    url[0] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[1] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[2] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[3] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
+    url[0] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;template=results;type=aggregate`;
+    url[1] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;template=results;type=aggregate`;
+    url[2] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;template=results;type=aggregate`;
+    url[3] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;template=results;type=aggregate`;
 
     return url;
 }
 
 async function main() {
+
     let yearStats = [];
-    for (let year = 1900; year < 2025; year++) {
-        const url = await urlGenerator(year);
+    
+        const url = await urlGenerator();
         const html = await fetchUrl(url);
         const data = await extractData(html);
-        const yearObject = await objectGenerator(data, year);
+        const yearObject = await objectGenerator(data);
         yearStats.push(yearObject);
-        console.log(year)
-    }
 
     await dataWriter(yearStats);
 }

@@ -2,11 +2,11 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 async function dataWriter(yearStats) {
-    fs.writeFileSync('teamStats.json', JSON.stringify(yearStats, null, 2));
+    fs.writeFileSync('combinedTeamT20WcStats.json', JSON.stringify(yearStats, null, 2));
     console.log('Data saved to teamStats.json');
 }
 
-async function objectGenerator(yearData, year, team) {
+async function objectGenerator(yearData,team) {
     const defaultStats = {
         team: team,
         mat: "0",
@@ -23,11 +23,7 @@ async function objectGenerator(yearData, year, team) {
     };
 
     const result = {
-        year: year.toString(),
-        allFormat: { ...defaultStats },
-        test: { ...defaultStats },
         odi: { ...defaultStats },
-        t20i: { ...defaultStats }
     };
 
     for (let data of yearData) {
@@ -56,7 +52,7 @@ async function objectGenerator(yearData, year, team) {
 
 async function extractData(html) {
     let data = [];
-    const formats = ["allFormat", "test", "odi", "t20i"];
+    const formats = ["odi"];
 
     for (let index = 0; index < html.length; index++) {
         const dom = html[index];
@@ -113,7 +109,7 @@ async function fetchUrl(url) {
     return html;
 }
 
-async function urlGenerator(year, team) {
+async function urlGenerator(team) {
     let teamId;
 
     if (team === "aus") teamId = 2;
@@ -130,10 +126,10 @@ async function urlGenerator(year, team) {
     else if (team === "ire") teamId = 29;
 
     return [
-        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;spanmax2=31+dec+${year};spanmin2=01+Jan+${year};spanval2=span;team=${teamId};template=results;type=team`,
-        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;spanmax2=31+dec+${year};spanmin2=01+Jan+${year};spanval2=span;team=${teamId};template=results;type=team`,
-        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;spanmax2=31+dec+${year};spanmin2=01+Jan+${year};spanval2=span;team=${teamId};template=results;type=team`,
-        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;spanmax2=31+dec+${year};spanmin2=01+Jan+${year};spanval2=span;team=${teamId};template=results;type=team`
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;team=${teamId};template=results;trophy=89;type=team`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;team=${teamId};template=results;trophy=89;type=team`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;team=${teamId};template=results;trophy=89;type=team`,
+        `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;team=${teamId};template=results;trophy=89;type=team`
     ];
 }
 
@@ -143,20 +139,22 @@ async function main() {
 
     for (let team of teams) {
         const yearStats = [];
-        for (let year = 1901; year < 2025; year++) {
-            const url = await urlGenerator(year, team);
+            const url = await urlGenerator(team);
             const html = await fetchUrl(url);
             const data = await extractData(html);
-            const yearObject = await objectGenerator(data, year, team);
+            const yearObject = await objectGenerator(data,team);
             yearStats.push(yearObject);
-            console.log(team, year);
+            console.log(team);
+
+            teamStats.push({ team, stats: yearStats });
+
         }
 
-        teamStats.push({ team, stats: yearStats });
+        await dataWriter(teamStats);
+
     }
 
-    await dataWriter(teamStats);
-}
+
 
 main();
 

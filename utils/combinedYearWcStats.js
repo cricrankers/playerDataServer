@@ -2,38 +2,12 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 
 async function dataWriter(yearStats) {
-    fs.writeFileSync('yearStats.json', JSON.stringify(yearStats, null, 2));
-    console.log('Data saved to yearStats.json');
+    fs.writeFileSync('combinedYearWcStats.json', JSON.stringify(yearStats, null, 2));
 }
 
-async function objectGenerator(yearData, year) {
+async function objectGenerator(yearData) {
     const result = {
-        "year": year.toString(),
-        "allFormat": {
-            "mat": "0",
-            "runs": "0",
-            "wkts": "0",
-            "balls": "0",
-            "ave": "0",
-            "rpo": "0"
-        },
-        "test": {
-            "mat": "0",
-            "runs": "0",
-            "wkts": "0",
-            "balls": "0",
-            "ave": "0",
-            "rpo": "0"
-        },
         "odi": {
-            "mat": "0",
-            "runs": "0",
-            "wkts": "0",
-            "balls": "0",
-            "ave": "0",
-            "rpo": "0"
-        },
-        "t20i": {
             "mat": "0",
             "runs": "0",
             "wkts": "0",
@@ -47,22 +21,13 @@ async function objectGenerator(yearData, year) {
         if (data.mat && data.runs && data.wkts && data.balls) {
             const format = data.format;
 
-            if (format === "allFormat") {
-                result.allFormat = { ...data };
-            } else if (format === "test") {
-                result.test = { ...data };
-            } else if (format === "odi") {
+            if (format === "odi") {
                 result.odi = { ...data };
-            } else if (format === "t20i") {
-                result.t20i = { ...data };
-            }
+            } 
         }
     }
 
-    delete result.allFormat.format;
-    delete result.test.format;
     delete result.odi.format;
-    delete result.t20i.format;
 
     return result;
 }
@@ -125,27 +90,26 @@ async function fetchUrl(url) {
     return html;
 }
 
-async function urlGenerator(year) {
+async function urlGenerator() {
     let url = [];
     
-    url[0] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[1] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[2] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
-    url[3] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;spanmax2=31+Dec+${year};spanmin2=01+Jan+${year};spanval2=span;template=results;type=aggregate`;
+    url[0] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=11;template=results;trophy=12;type=aggregate`;
+    url[1] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=1;template=results;trophy=12;type=aggregate`;
+    url[2] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;template=results;trophy=12;type=aggregate`;
+    url[3] = `https://stats.espncricinfo.com/ci/engine/stats/index.html?class=3;template=results;trophy=12;type=aggregate`;
 
     return url;
 }
 
 async function main() {
+
     let yearStats = [];
-    for (let year = 1900; year < 2025; year++) {
-        const url = await urlGenerator(year);
+    
+        const url = await urlGenerator();
         const html = await fetchUrl(url);
         const data = await extractData(html);
-        const yearObject = await objectGenerator(data, year);
+        const yearObject = await objectGenerator(data);
         yearStats.push(yearObject);
-        console.log(year)
-    }
 
     await dataWriter(yearStats);
 }
